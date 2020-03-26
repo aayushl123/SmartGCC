@@ -1,10 +1,12 @@
 package View;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
+import java.io.FileInputStream;
 
 public class HomeScene {
     private static Scene homeScene;
@@ -12,10 +14,12 @@ public class HomeScene {
     private static Menu editMenu;
     private static Menu helpMenu;
     private static MenuBar menuBar;
+    private static ToolBar toolBar;
 
     public static void setHomeScene(){
         setMenuBar();
-        VBox vBox = new VBox(menuBar);
+        setToolBar();
+        VBox vBox = new VBox(menuBar, toolBar);
         homeScene = new Scene(vBox, 1264, 775);
     }
 
@@ -55,7 +59,29 @@ public class HomeScene {
         helpMenu.getItems().add(helpMenuItem1);
     }
 
+    public static void setToolBar(){
+        try {
+            toolBar = new ToolBar();
+            FileInputStream input = new FileInputStream("src/Resources/CompileButtonIcon.png");
+            Image image = new Image(input);
+            ImageView imageView = new ImageView(image);
+            Button compileButton = new Button("Compile", imageView);
+            input = new FileInputStream("src/Resources/LinkIcon.png");
+            image = new Image(input);
+            imageView = new ImageView(image);
+            Button linkButton = new Button("Linking", imageView);
+            input = new FileInputStream("src/Resources/ExecuteIcon.png");
+            image = new Image(input);
+            imageView = new ImageView(image);
+            Button executeButton = new Button("Execute", imageView);
 
+            toolBar.getItems().add(compileButton);
+            toolBar.getItems().add(linkButton);
+            toolBar.getItems().add(executeButton);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public static Scene getHomeScene(){
         return homeScene;
