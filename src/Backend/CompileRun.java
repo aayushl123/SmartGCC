@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 public class CompileRun {
 
     public static void main(String[] args) {
-        String command1 = "g++ " + "c:\\Users\\ayusl\\Desktop\\test.cpp " + "-o " + "test";
-        String command2 = "c:\\Users\\ayusl\\Desktop\\test.exe";
+        String command1 = "g++ " + "..\\Backend\\Resources\\test.cpp " + "-o " + "test";
+        String command2 = "..\\Backend\\Resources\\test.exe";
         System.out.println(command1);
         executeCommand(command1);
         executeCommand(command2);
