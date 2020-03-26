@@ -1,17 +1,26 @@
 package Backend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CompileRun {
 
     public static void main(String[] args) {
-        String command1 = "g++ " + "..\\Backend\\Resources\\test.cpp " + "-o " + "test";
-        String command2 = "..\\Backend\\Resources\\test.exe";
-        System.out.println(command1);
-        executeCommand(command1);
-        executeCommand(command2);
+
+        File exeFile = new File("test.exe");
+        if(exeFile.exists()) {
+            exeFile.delete();
+        }
+
+        File compileFile = new File("src/Resources/test.cpp");
+        String absolutePath = compileFile.getAbsolutePath();
+        String compile = "g++ " + absolutePath + " -o " + "test";
+        String execute = "test.exe";
+
+        executeCommand(compile);
+        executeCommand(execute);
     }
 
     public static void executeCommand(String command) {
@@ -27,9 +36,5 @@ public class CompileRun {
         } catch (IOException e) {
             System.out.println("Exception = " + e.getMessage());
         }
-
     }
-
-
-
 }
