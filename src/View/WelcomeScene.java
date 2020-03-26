@@ -1,5 +1,6 @@
 package View;
 
+import Driver.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,6 +35,8 @@ public class WelcomeScene {
         radioButton1.setToggleGroup(radioGroup);
         radioButton2.setToggleGroup(radioGroup);
         radioButton3.setToggleGroup(radioGroup);
+        submitButton.setOnAction(event -> {
+            Main.changeScene();});
 
         setImageView();
         VBox vbox = new VBox(20, imageView, playerLabel,radioButton1, radioButton2, radioButton3, submitButton);
