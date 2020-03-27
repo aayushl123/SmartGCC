@@ -15,11 +15,14 @@ public class HomeScene {
     private static Menu helpMenu;
     private static MenuBar menuBar;
     private static ToolBar toolBar;
+    private static HomeTextEditor homeTextEditor;
 
     public static void setHomeScene(){
         setMenuBar();
         setToolBar();
-        VBox vBox = new VBox(menuBar, toolBar);
+        homeTextEditor = new HomeTextEditor();
+        homeTextEditor.setTextEditor();
+        VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor());
         homeScene = new Scene(vBox, 1264, 775);
     }
 
