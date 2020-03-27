@@ -11,9 +11,9 @@ public class TermTester {
         cmdInfo.put(4, "EXECUTE");
         Terminal t = new Terminal();
         t.setOption(1);
-        t.setFileName("Test.cpp");
+        t.setFileName("ProgFile.cpp");
         t.commandGen();
-        Terminal t2 = new Terminal(4, "Test.cpp");
+        Terminal t2 = new Terminal(4, "ProgFile.cpp");
 
 
     }

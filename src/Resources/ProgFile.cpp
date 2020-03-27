@@ -1,10 +1,8 @@
-
-#include <iostream>
 #include "HeaderFile.h"
-
+#include <iostream>
 int main() {
-    int num = NUM;
-    std::cout << "Hello World!"<<num *100;
-
+    //int num = NUM;
+    std::cout << "main() says Hello World!"<<NUM;
+    //myfunc();
     return 0;
 }
