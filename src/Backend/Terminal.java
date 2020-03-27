@@ -7,52 +7,77 @@ import java.io.InputStreamReader;
 
 public class Terminal {
 
-    StringBuilder output = new StringBuilder(); // holds the generated output
-    String command; // holds the firing command;
+    StringBuilder output = new StringBuilder();                              // holds the generated output
+    String command;                                                          // holds the firing command;
+    int option;
+    String fileName;
+
+    public Terminal() {
+
+    }
+
+    Terminal(int option, String fileName){
+        this.option = option;
+        this.fileName = fileName;
+        commandGen();
+
+    }
+
+    public int getOption() {
+        return option;
+    }
+
+    public void setOption(int option) {
+        this.option = option;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public StringBuilder getOutput() {
         return output;
     }
 
-    Terminal(int option, String fileName){
-        commandGen(option, fileName);
-        //File exeFile = new File("test.exe");
-//        if(exeFile.exists()) {
-//            exeFile.delete();
-//        }
-
-    }
-
-
     /*
     Generates the command for the appropriate command option.
      */
-    public void commandGen(int option, String fileName){
+    public void commandGen(){
 
-        if(option == 1){ //compile
-            File compileFile = new File("src/Resources/test.cpp"); // adjust the path to resources
+        if(option == 1){                                                     // Compile
+            command = "cd src; cd Resources; rm tempOut";
+            fireCommand();                                                   // Deletes previous compilations
+
+            File compileFile = new File("src/Resources/ProgFile.cpp"); // Adjust the path to resources
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-            command = "cd Resources; g++ " + absolutePath + " -o " + "test";
-            executeCommand();
+            command = "cd src; cd Resources; g++ " + absolutePath +" -Wall "+ " -o "+ "tempOut";
+            output.setLength(0);
+            fireCommand();
         }
 
-        else if( option == 4){ //execute
+        else if( option == 4){                                               // Execute
             String os = System.getProperty("os.name");
-            String execute;
             if(os.startsWith("Win")) {
                 command = null;
-                command = "test.exe";
+                command = "cd src; cd Resources;tempOut.exe";
             }
             else{
                 command = null;
-                command = "./test.out";
+                command = "cd src; cd Resources;./tempOut";
             }
-            executeCommand();
+            output.setLength(0);
+            fireCommand();
         }
 
     }
-    public void executeCommand() {
+
+    //Firing the stored command on the system terminal
+    public void fireCommand() {
         String line;
         String os = System.getProperty("os.name");
         ProcessBuilder builder;
@@ -66,27 +91,24 @@ public class Terminal {
 
             Process process = builder.start();
 
-            StringBuilder output = new StringBuilder();
-
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
 
             while ((line = reader.readLine()) != null) {
                 output.append(line + "\n");
             }
-
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("Success!");
-                System.out.println(output);
-                System.exit(0);
             } else {
-                //abnormal...
+                System.out.println(exitVal);
             }
 
         } catch (IOException e) {
+            System.out.println("There was a problem with the I/O");
             e.printStackTrace();
         } catch (InterruptedException e) {
+            System.out.println("There was a interruption with the execution");
             e.printStackTrace();
         }
     }

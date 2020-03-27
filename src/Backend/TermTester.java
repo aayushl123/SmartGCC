@@ -9,7 +9,12 @@ public class TermTester {
         cmdInfo.put(2, "LINK");
         cmdInfo.put(3, "DEBUG");
         cmdInfo.put(4, "EXECUTE");
-        Terminal t = new Terminal(1, "Test.cpp");
+        Terminal t = new Terminal();
+        t.setOption(1);
+        t.setFileName("Test.cpp");
+        t.commandGen();
+        Terminal t2 = new Terminal(4, "Test.cpp");
+
 
     }
 }
