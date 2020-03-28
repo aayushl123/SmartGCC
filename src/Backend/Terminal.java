@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 public class Terminal {
 
     StringBuilder output = new StringBuilder();                              // holds the generated output
+    StringBuilder outputErr = new StringBuilder();
     String command;                                                          // holds the firing command;
     int option;
     String fileName;
@@ -57,7 +58,22 @@ public class Terminal {
             command = null;
             command = "cd src; cd Resources; g++ " + absolutePath +" -Wall "+ " -o "+ "tempOut";
             output.setLength(0);
+            outputErr.setLength(0);
             fireCommand();
+        }
+        else if(option == 2){                                                //Link
+
+            String curPath = System.getProperty("user.dir");
+            command = null;
+            command = "cd src; cd Resources; rm LibDirectory; mkdir LibDirectory;" +
+                    " g++ -c LibFile.cpp;" + "mv LibFile.o " + curPath +"/src/Resources/LibDirectory;"+
+                    "cd LibDirectory; ar rcs LibFile.a LibFile.o; cd ..;"+
+                    "g++ -Wall -v ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
+                    "LibFile.a -o tempOut;";
+            output.setLength(0);
+            outputErr.setLength(0);
+            fireCommand();
+
         }
 
         else if( option == 4){                                               // Execute
@@ -71,6 +87,7 @@ public class Terminal {
                 command = "cd src; cd Resources;./tempOut";
             }
             output.setLength(0);
+            outputErr.setLength(0);
             fireCommand();
         }
 
@@ -100,8 +117,17 @@ public class Terminal {
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("Success!");
+                System.out.println(output);
             } else {
                 System.out.println(exitVal);
+
+                String lineErr;
+                BufferedReader readerErr = new BufferedReader(
+                        new InputStreamReader(process.getErrorStream()));
+                while ((lineErr = readerErr.readLine()) != null) {
+                    outputErr.append(lineErr + "\n");
+                }
+                System.out.println(outputErr);
             }
 
         } catch (IOException e) {
@@ -111,5 +137,6 @@ public class Terminal {
             System.out.println("There was a interruption with the execution");
             e.printStackTrace();
         }
+        //create a display output function which always is called from here
     }
 }

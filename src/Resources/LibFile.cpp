@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include <iostream>
 
 void myfunc()
 {
-    cout<<"myfunc() says HELLO WORLD\n";
+    std::cout<<"myfunc() says HELLO WORLD\n";
 }

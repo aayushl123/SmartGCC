@@ -1,1 +1,1 @@
-#define NUM 5
+#define NUM 5 //Keep the header file and the program file in the same Directory

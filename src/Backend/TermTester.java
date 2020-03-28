@@ -10,7 +10,7 @@ public class TermTester {
         cmdInfo.put(3, "DEBUG");
         cmdInfo.put(4, "EXECUTE");
         Terminal t = new Terminal();
-        t.setOption(1);
+        t.setOption(2);
         t.setFileName("ProgFile.cpp");
         t.commandGen();
         Terminal t2 = new Terminal(4, "ProgFile.cpp");
