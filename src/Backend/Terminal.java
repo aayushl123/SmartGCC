@@ -1,5 +1,7 @@
 package Backend;
 
+import sun.jvm.hotspot.gc_implementation.parallelScavenge.PSYoungGen;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -119,15 +121,14 @@ public class Terminal {
                 System.out.println("Success!");
                 System.out.println(output);
             } else {
-                System.out.println(exitVal);
-
                 String lineErr;
                 BufferedReader readerErr = new BufferedReader(
                         new InputStreamReader(process.getErrorStream()));
                 while ((lineErr = readerErr.readLine()) != null) {
                     outputErr.append(lineErr + "\n");
                 }
-                System.out.println(outputErr);
+                //System.out.println(exitVal);
+                //System.out.println(outputErr); //Display the uncatched errors
             }
 
         } catch (IOException e) {
@@ -137,6 +138,22 @@ public class Terminal {
             System.out.println("There was a interruption with the execution");
             e.printStackTrace();
         }
-        //create a display output function which always is called from here
+
+        errorFormatDisplay(); //display output function
+    }
+
+    /*
+    Provides Error codes and shows Formatted Error Display
+     */
+    public void errorFormatDisplay(){
+        if(outputErr.toString().contains("file not found")){
+            System.out.println("ERROR 1:The header Files are not in the appropriate directory");
+        }
+        if((outputErr.toString().contains("undeclared identifier"))||(outputErr.toString().contains("linker"))){
+            System.out.println("WARNING 1: Compilation has been done but, use the linker to add your libraries");
+        }
+        if((outputErr.toString().contains("No such file"))){
+            System.out.println("Warning 2: The file on which the operation was performed does not exist");
+        }
     }
 }
