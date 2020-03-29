@@ -1,7 +1,5 @@
 package Backend;
 
-import sun.jvm.hotspot.gc_implementation.parallelScavenge.PSYoungGen;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -54,16 +52,16 @@ public class Terminal {
         if(option == 1){                                                     // Compile
             command = "cd src; cd Resources; rm tempOut";
             if(os.startsWith("Win")){
-                command = command.replace(";","&");
+                command = command.replace(";"," &");
             }
             fireCommand();                                                   // Deletes previous compilations
 
-            File compileFile = new File("src/Resources/ProgFile.cpp"); // Adjust the path to resources
+            File compileFile = new File("src/Resources/"+fileName); // Adjust the path to resources
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
             command = "cd src; cd Resources; g++ " + absolutePath +" -Wall "+ " -o "+ "tempOut";
             if(os.startsWith("Win")){
-                command = command.replace(";","&");
+                command = command.replace(";"," &");
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -75,11 +73,12 @@ public class Terminal {
             command = null;
             command = "cd src; cd Resources; rm LibDirectory; mkdir LibDirectory;" +
                     " g++ -c LibFile.cpp;" + "mv LibFile.o " + curPath +"/src/Resources/LibDirectory;"+
-                    "cd LibDirectory; ar rcs LibFile.a LibFile.o; cd ..;"+
-                    "g++ -Wall -v ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
-                    "LibFile.a -o tempOut;";
+                    " cd LibDirectory; ar rcs LibFile.a LibFile.o; cd ..;"+
+                    " g++ -Wall -v ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
+                    "LibFile.a -o tempOut";
             if(os.startsWith("Win")){
-                command = command.replace(";","&");
+                command = command.replace(";"," &");
+                command = command.replace("rm","rmdir /q /s");
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -90,17 +89,30 @@ public class Terminal {
         else if( option == 4){                                               // Execute
             if(os.startsWith("Win")) {
                 command = null;
-                command = "cd src; cd Resources;tempOut.exe";
+                command = "cd src; cd Resources; tempOut.exe";
                 if(os.startsWith("Win")){
-                    command = command.replace(";","&");
+                    command = command.replace(";"," &");
                 }
             }
             else{
                 command = null;
-                command = "cd src; cd Resources;./tempOut";
+                command = "cd src; cd Resources; ./tempOut";
                 if(os.startsWith("Win")){
-                    command = command.replace(";","&");
+                    command = command.replace(";"," &");
                 }
+            }
+            output.setLength(0);
+            outputErr.setLength(0);
+            fireCommand();
+        }
+
+        else if(option == 5){                                                       //Optimize
+            File compileFile = new File("src/Resources/"+fileName);
+            String absolutePath = compileFile.getAbsolutePath();
+            command = null;
+            command = "cd src; cd Resources; rm tempOut; g++ -O2 " + absolutePath + " -o "+ "tempOut";
+            if(os.startsWith("Win")){
+                command = command.replace(";"," &");
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -111,6 +123,7 @@ public class Terminal {
 
     //Firing the stored command on the system terminal
     public void fireCommand() {
+        //System.out.println(command);
         String line;
         String os = System.getProperty("os.name");
         ProcessBuilder builder;
