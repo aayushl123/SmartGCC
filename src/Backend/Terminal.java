@@ -50,15 +50,21 @@ public class Terminal {
     Generates the command for the appropriate command option.
      */
     public void commandGen(){
-
+        String os = System.getProperty("os.name");
         if(option == 1){                                                     // Compile
             command = "cd src; cd Resources; rm tempOut";
+            if(os.startsWith("Win")){
+                command = command.replace(";","&");
+            }
             fireCommand();                                                   // Deletes previous compilations
 
             File compileFile = new File("src/Resources/ProgFile.cpp"); // Adjust the path to resources
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
             command = "cd src; cd Resources; g++ " + absolutePath +" -Wall "+ " -o "+ "tempOut";
+            if(os.startsWith("Win")){
+                command = command.replace(";","&");
+            }
             output.setLength(0);
             outputErr.setLength(0);
             fireCommand();
@@ -72,6 +78,9 @@ public class Terminal {
                     "cd LibDirectory; ar rcs LibFile.a LibFile.o; cd ..;"+
                     "g++ -Wall -v ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
                     "LibFile.a -o tempOut;";
+            if(os.startsWith("Win")){
+                command = command.replace(";","&");
+            }
             output.setLength(0);
             outputErr.setLength(0);
             fireCommand();
@@ -79,14 +88,19 @@ public class Terminal {
         }
 
         else if( option == 4){                                               // Execute
-            String os = System.getProperty("os.name");
             if(os.startsWith("Win")) {
                 command = null;
                 command = "cd src; cd Resources;tempOut.exe";
+                if(os.startsWith("Win")){
+                    command = command.replace(";","&");
+                }
             }
             else{
                 command = null;
                 command = "cd src; cd Resources;./tempOut";
+                if(os.startsWith("Win")){
+                    command = command.replace(";","&");
+                }
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -138,8 +152,8 @@ public class Terminal {
             System.out.println("There was a interruption with the execution");
             e.printStackTrace();
         }
-
-        errorFormatDisplay(); //display output function
+        if(!outputErr.toString().isEmpty())
+        errorFormatDisplay(); //display Error output function
     }
 
     /*
