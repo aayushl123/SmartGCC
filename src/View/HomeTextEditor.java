@@ -17,7 +17,7 @@ public class HomeTextEditor {
         scrollPane = new ScrollPane();
 
         editorArea.setPrefWidth(900);
-        editorArea.setPrefHeight(600);
+        editorArea.setPrefHeight(450);
         scrollPane.setContent(editorArea);
         frequentlyUsedWindow.setFrequentlyUsedBox();
 

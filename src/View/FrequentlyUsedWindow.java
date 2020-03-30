@@ -10,7 +10,7 @@ public class FrequentlyUsedWindow {
         Label boxTitle = new Label("Last used actions");
         frequentlyUsedBox = new VBox(boxTitle);
         frequentlyUsedBox.setPrefWidth(300);
-        frequentlyUsedBox.setPrefHeight(600);
+        frequentlyUsedBox.setPrefHeight(450);
     }
 
     public VBox getFrequentlyUsedBox(){
