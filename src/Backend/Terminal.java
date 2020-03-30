@@ -201,6 +201,18 @@ public class Terminal {
             fireCommand();
             readFile(suFileName);
         }
+        else if(option == 8){                                                       //Enable exceptions
+            File compileFile = new File("src/Resources/"+fileName);
+            String absolutePath = compileFile.getAbsolutePath();
+            command = null;
+            command = "cd src; cd Resources; rm tempOut.exe; g++ -fexceptions " + absolutePath + " -o "+ "tempOut.exe";
+            if(os.startsWith("Win")){
+                command = command.replace(";"," &");
+            }
+            output.setLength(0);
+            outputErr.setLength(0);
+            fireCommand();
+        }
     }
 
     /*
