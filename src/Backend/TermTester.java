@@ -10,8 +10,10 @@ public class TermTester {
         cmdInfo.put(3, "DEBUG");
         cmdInfo.put(4, "EXECUTE");
         cmdInfo.put(5, "OPTIMIZE");
-        Terminal t = new Terminal(5, "ProgFileSimple.cpp");
-        Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
+        cmdInfo.put(6, "PROFILE_REPORT");
+        cmdInfo.put(7, "STACK_USAGE");
+        Terminal t = new Terminal(7, "ProgFileSimple.cpp");
+        //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
 
     }
 }

@@ -1,9 +1,6 @@
 package Backend;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Terminal {
 
@@ -72,9 +69,9 @@ public class Terminal {
             String curPath = System.getProperty("user.dir");
             command = null;
             command = "cd src; cd Resources; rm LibDirectory; mkdir LibDirectory;" +
-                    " g++ -c LibFile.cpp;" + "mv LibFile.o " + curPath +"/src/Resources/LibDirectory;"+
+                    " g++ -c LibFile.cpp;" + " mv LibFile.o " + curPath +"/src/Resources/LibDirectory;"+
                     " cd LibDirectory; ar rcs LibFile.a LibFile.o; cd ..;"+
-                    " g++ -Wall -v ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
+                    " g++ -Wall ProgFile.cpp " + curPath + "/src/Resources/LibDirectory/" +
                     "LibFile.a -o tempOut";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
@@ -83,7 +80,6 @@ public class Terminal {
             output.setLength(0);
             outputErr.setLength(0);
             fireCommand();
-
         }
 
         else if( option == 4){                                               // Execute
@@ -119,11 +115,39 @@ public class Terminal {
             fireCommand();
         }
 
+        else if(option == 6){                                                       //Generate Profile Report
+            File compileFile = new File("src/Resources/"+fileName);
+            String absolutePath = compileFile.getAbsolutePath();
+            command = null;
+            command = "cd src; cd Resources; rm tempOut.exe; rm tempProfReport.txt; g++ -fprofile-report " + absolutePath + " -o "+
+                    "tempOut" + " 2> tempProfReport.txt";
+            if(os.startsWith("Win")){
+                command = command.replace(";"," &");
+            }
+            output.setLength(0);
+            outputErr.setLength(0);
+            fireCommand();
+            readFile("tempProfReport.txt");
+        }
+
+        else if(option == 7){                                                       //Check stack usage
+            File compileFile = new File("src/Resources/"+fileName);
+            String suFileName = fileName.replace(".cpp", ".su");
+            String absolutePath = compileFile.getAbsolutePath();
+            command = null;
+            command = "cd src; cd Resources; rm tempOut.exe; rm "+suFileName+"; g++ -fstack-usage " + absolutePath + " -o "+ "tempOut.exe";
+            if(os.startsWith("Win")){
+                command = command.replace(";"," &");
+            }
+            output.setLength(0);
+            outputErr.setLength(0);
+            fireCommand();
+            readFile(suFileName);
+        }
     }
 
     //Firing the stored command on the system terminal
     public void fireCommand() {
-        //System.out.println(command);
         String line;
         String os = System.getProperty("os.name");
         ProcessBuilder builder;
@@ -142,6 +166,7 @@ public class Terminal {
 
             while ((line = reader.readLine()) != null) {
                 output.append(line + "\n");
+                //System.out.println(line);
             }
             int exitVal = process.waitFor();
             if (exitVal == 0) {
@@ -181,6 +206,25 @@ public class Terminal {
         }
         if((outputErr.toString().contains("No such file"))){
             System.out.println("Warning 2: The file on which the operation was performed does not exist");
+        }
+    }
+
+    public void readFile(String fileName){
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("src/Resources/" + fileName));
+            String line;
+            while((line = in.readLine()) != null)
+            {
+                System.out.println(line);
+            }
+            in.close();
+            System.out.println("\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("The mentioned file does not exist");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("There was a problem with the I/O");
+            e.printStackTrace();
         }
     }
 }
