@@ -15,7 +15,7 @@ public class TermTester {
         cmdInfo.put(7, "STACK_USAGE");
         //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
         Terminal t = new Terminal();
-        t.setOption(2);
+        t.setOption(3);
         t.setFileName("ProgFile.cpp");
         t.commandGen();
         Terminal t2 = new Terminal(4, "ProgFile.cpp");

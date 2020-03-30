@@ -122,11 +122,11 @@ public class Terminal {
                         + curPath + "/src/Resources/LibDirectory;" +
                         " cd LibDirectory; ar rcs "+libFileName.substring(0,libFileName.indexOf("."))+".a " +
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".o; cd ..;" +
-                        " g++ -Wall " + fileName + " " + curPath + "/src/Resources/LibDirectory/" +
+                        " g++ -Wall -g " + fileName + " " + curPath + "/src/Resources/LibDirectory/" +
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".a -o tempOut";
             }
             else{
-                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall "+ " -o "+ "tempOut";
+                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall -g"+ " -o "+ "tempOut";
 
             }
             if(os.startsWith("Win")){
