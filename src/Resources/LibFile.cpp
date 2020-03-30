@@ -1,6 +1,14 @@
+#include "HeaderFile.h"
 #include <iostream>
-
-void myfunc()
+double encrypt(int val)
 {
-    std::cout<<"myfunc() says HELLO WORLD\n";
+    std::cout<<"encypt() says HELLO WORLD\n";
+    double encVal= ((double)ENCRPTION_STANDARD/(double)val);
+    return encVal;
+}
+int decrypt(double encVal){
+    std::cout<<"decrypt() says HELLO WORLD\n";
+    double decVal=((double)ENCRPTION_STANDARD/(double)encVal);
+    int returnVal = (int) decVal;
+    return decVal;
 }

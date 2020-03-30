@@ -1,5 +1,6 @@
 package Backend;
 
+
 import java.util.HashMap;
 
 public class TermTester {
@@ -12,8 +13,14 @@ public class TermTester {
         cmdInfo.put(5, "OPTIMIZE");
         cmdInfo.put(6, "PROFILE_REPORT");
         cmdInfo.put(7, "STACK_USAGE");
-        Terminal t = new Terminal(7, "ProgFileSimple.cpp");
         //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
+        Terminal t = new Terminal();
+        t.setOption(2);
+        t.setFileName("ProgFile.cpp");
+        t.commandGen();
+        Terminal t2 = new Terminal(4, "ProgFile.cpp");
+        //Terminal t3 = new Terminal(7, "ProgFileSimple.cpp");
+
 
     }
 }
