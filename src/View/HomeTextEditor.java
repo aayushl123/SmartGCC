@@ -24,6 +24,14 @@ public class HomeTextEditor {
         hbox = new HBox(scrollPane, frequentlyUsedWindow.getFrequentlyUsedBox());
     }
 
+    public String getText(){
+        return editorArea.getText();
+    }
+
+    public TextArea getTextArea(){
+        return editorArea;
+    }
+
     public HBox getTextEditor(){
         return hbox;
     }
