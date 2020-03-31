@@ -26,6 +26,12 @@ public class TermTester {
 
     }
 
+    /**
+     * method created to handle the call from front end
+     * @param option
+     * @param fileName
+     * @author sagar
+     */
     public static void ToolBarActions(int option, String fileName) {
         HashMap<Integer, String> cmdInfo = new HashMap<Integer, String>();
         cmdInfo.put(1, "COMPILE");
