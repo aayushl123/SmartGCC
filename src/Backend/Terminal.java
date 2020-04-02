@@ -47,8 +47,9 @@ public class Terminal {
      */
     public void commandGen(){
         String os = System.getProperty("os.name");
+
         if(option == 1){                                                         // Compile
-            command = "cd src; cd Resources; rm tempOut";                        // Deletes previous compilations
+            command = "cd src; cd Resources; rm -f tempOut";                        // Deletes previous compilations
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
             }
@@ -66,7 +67,7 @@ public class Terminal {
             fireCommand();
         }
         else if(option == 2){                                                   //Link
-            command = "cd src; cd Resources; rm tempOut";                        // Deletes previous compilations
+            command = "cd src; cd Resources; rm -f tempOut";                        // Deletes previous compilations
             if(os.startsWith("Win")){
                 command = command.replace(";","&");
             }
@@ -95,14 +96,14 @@ public class Terminal {
             }
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
-                command = command.replace("rm","rmdir /q /s");
+                command = command.replace("rm -r","rmdir /q /s");
             }
             output.setLength(0);
             outputErr.setLength(0);
             fireCommand();
         }
         else if(option ==3){
-            command = "cd src; cd Resources; rm tempOut";                        // Deletes previous compilations
+            command = "cd src; cd Resources; rm -f tempOut";                        // Deletes previous compilations
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
             }
@@ -131,7 +132,7 @@ public class Terminal {
             }
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
-                command = command.replace("rm","rmdir /q /s");
+                command = command.replace("rm -r","rmdir /q /s");
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -140,6 +141,12 @@ public class Terminal {
         }
 
         else if( option == 4){                                                   // Execute
+            File exeFile = new File("src/Resources/tempOut.exe");
+            if(!exeFile.exists()) {                                             //Compile the file before executing
+                setOption(1);
+                commandGen();
+            }
+
             if(os.startsWith("Win")) {
                 command = null;
                 command = "cd src; cd Resources; tempOut.exe";
@@ -163,7 +170,7 @@ public class Terminal {
             File compileFile = new File("src/Resources/"+fileName);
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-            command = "cd src; cd Resources; rm tempOut; g++ -O2 " + absolutePath + " -o "+ "tempOut";
+            command = "cd src; cd Resources; rm -f tempOut; g++ -O2 " + absolutePath + " -o "+ "tempOut";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
             }
@@ -176,7 +183,7 @@ public class Terminal {
             File compileFile = new File("src/Resources/"+fileName);
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-            command = "cd src; cd Resources; rm tempOut.exe; rm tempProfReport.txt; g++ -fprofile-report " + absolutePath + " -o "+
+            command = "cd src; cd Resources; rm -f tempOut.exe; rm -f tempProfReport.txt; g++ -fprofile-report " + absolutePath + " -o "+
                     "tempOut" + " 2> tempProfReport.txt";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
@@ -192,7 +199,7 @@ public class Terminal {
             String suFileName = fileName.replace(".cpp", ".su");
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-            command = "cd src; cd Resources; rm tempOut.exe; rm "+suFileName+"; g++ -fstack-usage " + absolutePath + " -o "+ "tempOut.exe";
+            command = "cd src; cd Resources; rm -f tempOut.exe; rm -f "+suFileName+"; g++ -fstack-usage " + absolutePath + " -o "+ "tempOut.exe";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
             }
@@ -205,7 +212,7 @@ public class Terminal {
             File compileFile = new File("src/Resources/"+fileName);
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-            command = "cd src; cd Resources; rm tempOut.exe; g++ -fexceptions " + absolutePath + " -o "+ "tempOut.exe";
+            command = "cd src; cd Resources; rm -f tempOut.exe; g++ -fexceptions " + absolutePath + " -o "+ "tempOut.exe";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
             }
@@ -262,7 +269,7 @@ public class Terminal {
             }
             int exitVal = process.waitFor();
             if (exitVal == 0) {
-                display("Success!");
+                //display("Success!");
                 display(output.toString());
             } else {
                 String lineErr;
