@@ -72,6 +72,8 @@ public class HomeScene {
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
                 TermTester.ToolBarActions(1, file.getName());
+                //file.getName();
+                System.out.printf(""+file.getName());
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {

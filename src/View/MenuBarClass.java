@@ -108,9 +108,14 @@ public class MenuBarClass {
 
             //for saving the file in resources
             if(!file.getAbsolutePath().contains("/src/Resources")) {
-                System.out.println(file.getAbsolutePath());
-                String pathname = "/Users/sagarbhatia/Desktop/Masters_in_Applied_Computer_Science/Winter-2020/SOEN6751-HCI/Project/src/Resources/";
-                file = new File(pathname + file.getName());
+                System.out.println("Location to the original file :"+file.getAbsolutePath());
+                String pathname = "/";
+                file = new File("src/Resources/"+file.getName() );
+                if (file.createNewFile()) {
+                    System.out.println("File created: " + file.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
                 System.out.println("new File "+file.getAbsolutePath());
                 writer = new PrintWriter(file);
                 writer.println(content);
