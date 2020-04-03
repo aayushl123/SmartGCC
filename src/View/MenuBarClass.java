@@ -80,19 +80,55 @@ public class MenuBarClass {
 
                 File file = null;
                 //Show save file dialog
-                if (selectedOption.equals("Save as") || selectedOption.equals("Save")) {
+                if (selectedOption.equals("Save as") ) {
                     file = fileChooser.showSaveDialog(Main.getStage());
                 } else if (selectedOption.equals("Open")) {
                     file = fileChooser.showOpenDialog(Main.getStage());
+                } else if(selectedOption.equals("Save")) {
+                    saveAsTextToFile(homeTextEditor.getText(),HomeScene.getFile());
                 }
                 if (file != null) {
-                    if (selectedOption.equals("Save as") || selectedOption.equals("Save")) {
-                        saveTextToFile(homeTextEditor.getText(), file);
+                    if (selectedOption.equals("Save as") ) {
+                        saveAsTextToFile(homeTextEditor.getText(), file);
                     } else if (selectedOption.equals("Open")) {
                         readTextFromFile(file);
                     }
                 }
             });
+        }
+    }
+
+    public void saveAsTextToFile(String content, File file) {
+        try {
+            PrintWriter writer;
+
+            //code for saving the file in user's location
+            System.out.println(file.getAbsolutePath());
+            writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+
+            //for saving the file in resources
+            if(!file.getAbsolutePath().contains("/src/Resources")) {
+                System.out.println("Location to the original file :"+file.getAbsolutePath());
+                String pathname = "/";
+                file = new File("src/Resources/"+file.getName() );
+                if (file.createNewFile()) {
+                    System.out.println("File created: " + file.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+                System.out.println("new File "+file.getAbsolutePath());
+                writer = new PrintWriter(file);
+                writer.println(content);
+                writer.close();
+                System.out.println("Saved file in Resources");
+            }
+
+            HomeScene homeScene = new HomeScene();
+            homeScene.setFile(file);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -134,6 +170,25 @@ public class MenuBarClass {
         try{
             Scanner s = new Scanner(file);
             while (s.hasNext()) {
+                homeTextEditor.getTextArea().setText("");
+                homeTextEditor.getTextArea().appendText(s.nextLine()+"\n");
+            }
+            if(!file.getName().contains("/src/Resources")) {
+                System.out.println(file.getAbsolutePath());
+                saveAsTextToFile(homeTextEditor.getTextArea().getText(), file);
+            }
+            else {
+                HomeScene homeScene = new HomeScene();
+                homeScene.setFile(file);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    /*public void readTextFromFile(File file) {
+        try{
+            Scanner s = new Scanner(file);
+            while (s.hasNext()) {
                 homeTextEditor.getTextArea().appendText(s.nextLine()+"\n");
             }
             if(!file.getName().contains("/src/Resources")) {
@@ -147,5 +202,5 @@ public class MenuBarClass {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 }

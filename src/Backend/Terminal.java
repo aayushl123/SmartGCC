@@ -1,4 +1,6 @@
 package Backend;
+import View.ConsoleOutput;
+
 import javax.swing.*;
 import java.io.*;
 
@@ -311,6 +313,7 @@ public class Terminal {
     Display any terminal responses to the console
      */
     public void display(String str){
+        ConsoleOutput.getOutputArea().setText(str);
         System.out.println(str);
     }
 

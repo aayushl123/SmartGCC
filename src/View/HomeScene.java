@@ -21,9 +21,10 @@ public class HomeScene {
     private static MenuBar menuBar;
     private static ToolBar toolBar;
     private static HomeTextEditor homeTextEditor;
+    private static ConsoleOutput consoleOutput;
     private static File file;
 
-    public File getFile() {
+    public static File getFile() {
         return file;
     }
 
@@ -35,11 +36,13 @@ public class HomeScene {
         setToolBar();
         homeTextEditor = new HomeTextEditor();
         homeTextEditor.setTextEditor();
+        initializeConsoleOutput();
         menuBarClass = new MenuBarClass(homeTextEditor);
         menuBar = menuBarClass.getMenuBar();
-        VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor());
+        VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor(),consoleOutput.getConsoleOutput());
         homeScene = new Scene(vBox, 1264, 775);
     }
+
 
     public static void setToolBar(){
         try {
@@ -66,6 +69,11 @@ public class HomeScene {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private static void initializeConsoleOutput() {
+        consoleOutput = new ConsoleOutput();
+        consoleOutput.setTextEditor();
     }
 
     public static void setToolBarButtonAction(Button button){
