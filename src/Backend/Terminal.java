@@ -19,7 +19,6 @@ public class Terminal {
         this.option = option;
         this.fileName = fileName;
         commandGen();
-
     }
 
     public int getOption() {
