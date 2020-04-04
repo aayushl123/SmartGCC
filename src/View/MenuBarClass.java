@@ -106,76 +106,84 @@ public class MenuBarClass {
                 FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CPP files(.cpp)", "*.cpp");
                 fileChooser.getExtensionFilters().add(extFilter);
 
-                File file = null;
+                File originalFile = null;
                 //Show save file dialog
-                if (selectedOption.equals("Save as") || selectedOption.equals("Save")) {
-                    file = fileChooser.showSaveDialog(Main.getStage());
+                if (selectedOption.equals("Save as") ) {
+                    originalFile = fileChooser.showSaveDialog(Main.getStage());
                 } else if (selectedOption.equals("Open")) {
-                    file = fileChooser.showOpenDialog(Main.getStage());
+                    originalFile = fileChooser.showOpenDialog(Main.getStage());
+                } else if(selectedOption.equals("Save")) {
+                    saveAsTextToFile(homeTextEditor.getText(),HomeScene.getFile());
                 }
-                if (file != null) {
-                    if (selectedOption.equals("Save as") || selectedOption.equals("Save")) {
-                        saveTextToFile(homeTextEditor.getText(), file);
+                if (originalFile != null) {
+                    if (selectedOption.equals("Save as") ) {
+                        saveAsTextToFile(homeTextEditor.getText(), originalFile);
                     } else if (selectedOption.equals("Open")) {
-                        readTextFromFile(file);
+                        readTextFromFile(originalFile);
                     }
                 }
             });
         }
     }
 
-    public void saveTextToFile(String content, File file) {
+    public void saveAsTextToFile(String content, File originalFile) {
         try {
             PrintWriter writer;
 
             //code for saving the file in user's location
-            System.out.println(file.getAbsolutePath());
-            writer = new PrintWriter(file);
+            System.out.println(originalFile.getAbsolutePath());
+            writer = new PrintWriter(originalFile);
             writer.println(content);
             writer.close();
 
+            File localFile=null;
             //for saving the file in resources
-            if(!file.getAbsolutePath().contains("/src/Resources")) {
-                System.out.println("Location to the original file :"+file.getAbsolutePath());
+            if(!originalFile.getAbsolutePath().contains("/src/Resources")) {
+                System.out.println("Location to the original file :"+originalFile.getAbsolutePath());
                 String pathname = "/";
-                file = new File("src/Resources/"+file.getName() );
-                if (file.createNewFile()) {
-                    System.out.println("File created: " + file.getName());
+                localFile = new File("src/Resources/"+originalFile.getName() );
+                if (localFile.createNewFile()) {
+                    System.out.println("File created: " + localFile.getName());
                 } else {
                     System.out.println("File already exists.");
                 }
-                System.out.println("new File "+file.getAbsolutePath());
-                writer = new PrintWriter(file);
+                System.out.println("new File "+localFile.getAbsolutePath());
+                writer = new PrintWriter(localFile);
                 writer.println(content);
                 writer.close();
                 System.out.println("Saved file in Resources");
             }
 
             HomeScene homeScene = new HomeScene();
-            homeScene.setFile(file);
+            homeScene.setFile(localFile,originalFile);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    public void readTextFromFile(File file) {
+
+
+    public void readTextFromFile(File originalFile) {
         try{
-            Scanner s = new Scanner(file);
+            Scanner s = new Scanner(originalFile);
+            homeTextEditor.getTextArea().setText("");
             while (s.hasNext()) {
+
                 homeTextEditor.getTextArea().appendText(s.nextLine()+"\n");
             }
-            if(!file.getName().contains("/src/Resources")) {
-                System.out.println(file.getAbsolutePath());
-                saveTextToFile(homeTextEditor.getTextArea().getText(), file);
+            if(!originalFile.getName().contains("/src/Resources")) {
+                System.out.println(originalFile.getAbsolutePath());
+                saveAsTextToFile(homeTextEditor.getTextArea().getText(), originalFile);
             }
             else {
                 HomeScene homeScene = new HomeScene();
-                homeScene.setFile(file);
+                homeScene.setFile(originalFile,originalFile);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 
     public void setSwitchUserActions(MenuItem switchUserMenuItem) {
         switchUserMenuItem.setOnAction(event -> {

@@ -1,7 +1,15 @@
 package View;
 
+
+import Backend.TermTester;
+import Driver.Main;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import java.io.File;
 
@@ -12,14 +20,16 @@ public class HomeScene {
     private static MenuBar menuBar;
     private static ToolBar toolBar;
     private static HomeTextEditor homeTextEditor;
-    private static File file;
+    private static ConsoleOutput consoleOutput;
+    private static File localFile,originalFile;
 
-    public File getFile() {
-        return file;
+    public static File getFile() {
+        return originalFile;
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setFile(File localFile,File originalFile) {
+        this.localFile = localFile;
+        this.originalFile=originalFile;
     }
 
     public static void setHomeScene(){
@@ -27,10 +37,28 @@ public class HomeScene {
         toolBar = toolBarClass.getToolBar();
         homeTextEditor = new HomeTextEditor();
         homeTextEditor.setTextEditor();
+        initializeConsoleOutput();
         menuBarClass = new MenuBarClass(homeTextEditor);
         menuBar = menuBarClass.getMenuBar();
-        VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor());
+        VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor(),consoleOutput.getConsoleOutput());
         homeScene = new Scene(vBox, 1264, 775);
+
+
+        homeScene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                if (ke.getCode() == KeyCode.F12) {
+                    System.out.println("Key Pressed: " + ke.getCode());
+                    ke.consume(); // <-- stops passing the event to next node
+                }
+                System.out.println(ke.getCode());
+            }
+        });
+    }
+
+
+    private static void initializeConsoleOutput() {
+        consoleOutput = new ConsoleOutput();
+        consoleOutput.setTextEditor();
     }
 
     public static Scene getHomeScene(){
