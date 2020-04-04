@@ -22,14 +22,15 @@ public class HomeScene {
     private static ToolBar toolBar;
     private static HomeTextEditor homeTextEditor;
     private static ConsoleOutput consoleOutput;
-    private static File file;
+    private static File localFile,originalFile;
 
     public static File getFile() {
-        return file;
+        return originalFile;
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setFile(File localFile,File originalFile) {
+        this.localFile = localFile;
+        this.originalFile=originalFile;
     }
 
     public static void setHomeScene(){
@@ -79,13 +80,13 @@ public class HomeScene {
     public static void setToolBarButtonAction(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
-                TermTester.ToolBarActions(1, file.getName());
+                TermTester.ToolBarActions(1, localFile.getName());
                 //file.getName();
-                System.out.printf(""+file.getName());
+                System.out.printf(""+localFile.getName());
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
-                TermTester.ToolBarActions(4, file.getName());
+                TermTester.ToolBarActions(4, localFile.getName());
             });
         }
     }
