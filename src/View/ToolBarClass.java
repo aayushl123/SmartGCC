@@ -106,4 +106,14 @@ public class ToolBarClass {
             });
         }
     }
+
+    public static void removeToolBarTypical(){
+        toolBar.getItems().remove(codeGenerationButton);
+        toolBar.getItems().remove(codeOptimizationButton);
+    }
+
+    public static void removeToolBarExpert(){
+        toolBar.getItems().remove(developerOptionsButton);
+    }
+
 }

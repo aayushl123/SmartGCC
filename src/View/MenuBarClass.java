@@ -1,5 +1,6 @@
 package View;
 
+import Backend.UserClass;
 import Driver.Main;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -16,6 +17,8 @@ public class MenuBarClass {
     private Menu fileMenu;
     private Menu editMenu;
     private Menu helpMenu;
+    private Menu switchUserMenu;
+    private Menu allOptionsMenu;
     private MenuBar menuBar;
     private HomeTextEditor homeTextEditor;
 
@@ -34,12 +37,16 @@ public class MenuBarClass {
         menuBar.getMenus().add(fileMenu);
         menuBar.getMenus().add(editMenu);
         menuBar.getMenus().add(helpMenu);
+        menuBar.getMenus().add(switchUserMenu);
+        menuBar.getMenus().add(allOptionsMenu);
     }
 
     public void setMenus(){
         fileMenu = new Menu("File");
         editMenu = new Menu("Edit");
         helpMenu = new Menu("Help");
+        switchUserMenu = new Menu("Switch User");
+        allOptionsMenu = new Menu("All Options");
 
         MenuItem fileMenuItem1 = new MenuItem("New");
         MenuItem fileMenuItem2 = new MenuItem("Open");
@@ -61,11 +68,32 @@ public class MenuBarClass {
 
         MenuItem helpMenuItem1 = new MenuItem("View Documentation");
 
+        helpMenu.getItems().add(helpMenuItem1);
+
+        MenuItem switchMenuItem1 = new MenuItem("Novice");
+        MenuItem switchMenuItem2 = new MenuItem("Typical");
+        MenuItem switchMenuItem3 = new MenuItem("Expert");
+
+        switchUserMenu.getItems().add(switchMenuItem1);
+        switchUserMenu.getItems().add(switchMenuItem2);
+        switchUserMenu.getItems().add(switchMenuItem3);
+
+        //add all options after discussion
+        /*MenuItem allOptionsItem1 = new MenuItem("Novice");
+        MenuItem allOptionsItem2 = new MenuItem("Typical");
+        MenuItem allOptionsItem3 = new MenuItem("Expert");
+
+        allOptionsMenu.getItems().add(switchMenuItem1);
+        allOptionsMenu.getItems().add(switchMenuItem2);
+        allOptionsMenu.getItems().add(switchMenuItem3);*/
+
         setFileMenuActions(fileMenuItem2);
         setFileMenuActions(fileMenuItem3);
         setFileMenuActions(fileMenuItem4);
 
-        helpMenu.getItems().add(helpMenuItem1);
+        setSwitchUserActions(switchMenuItem1);
+        setSwitchUserActions(switchMenuItem2);
+        setSwitchUserActions(switchMenuItem3);
     }
 
     public void setFileMenuActions(MenuItem fileMenuItem){
@@ -147,5 +175,37 @@ public class MenuBarClass {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void setSwitchUserActions(MenuItem switchUserMenuItem) {
+        switchUserMenuItem.setOnAction(event -> {
+            String userType = UserClass.getUserType();
+            String switchUser = switchUserMenuItem.getText();
+            if(!switchUser.equalsIgnoreCase(userType)) {
+                UserClass.setUserType(switchUser);
+                String user = UserClass.getUserType();
+                if(userType.equalsIgnoreCase("expert")){
+                    if(switchUser.equalsIgnoreCase("typical")){
+                        ToolBarClass.removeToolBarExpert();
+                    } else{
+                        ToolBarClass.removeToolBarExpert();
+                        ToolBarClass.removeToolBarTypical();
+                    }
+                } else if(userType.equalsIgnoreCase("typical")){
+                    if(switchUser.equalsIgnoreCase("expert")){
+                        ToolBarClass.setToolBarExpert();
+                    } else{
+                        ToolBarClass.removeToolBarTypical();
+                    }
+                } else{
+                    if(switchUser.equalsIgnoreCase("typical")){
+                        ToolBarClass.setToolBarTypical();
+                    } else{
+                        ToolBarClass.setToolBarTypical();
+                        ToolBarClass.setToolBarExpert();
+                    }
+                }
+            }
+        });
     }
 }

@@ -46,7 +46,7 @@ public class WelcomeScene {
                 user = "Typical";
             else
                 user = "Expert";
-            new UserClass(user);
+            UserClass.setUserType(user);
             Main.changeScene();
         });
 
