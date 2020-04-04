@@ -2,10 +2,13 @@ package View;
 
 import Backend.TermTester;
 import Driver.Main;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
@@ -42,6 +45,17 @@ public class HomeScene {
         menuBar = menuBarClass.getMenuBar();
         VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor(),consoleOutput.getConsoleOutput());
         homeScene = new Scene(vBox, 1264, 775);
+
+
+        homeScene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                if (ke.getCode() == KeyCode.F12) {
+                    System.out.println("Key Pressed: " + ke.getCode());
+                    ke.consume(); // <-- stops passing the event to next node
+                }
+                System.out.println(ke.getCode());
+            }
+        });
     }
 
 

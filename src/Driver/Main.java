@@ -21,6 +21,8 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene(root, 1264, 775));
         primaryStage.setScene(WelcomeScene.getWelcomeScene());
         primaryStage.show();
+
+
     }
 
     public static void changeScene(){
