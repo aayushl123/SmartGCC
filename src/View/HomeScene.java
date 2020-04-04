@@ -66,6 +66,8 @@ public class HomeScene {
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
             Button compileButton = new Button("Compile", imageView);
+            compileButton.setTooltip(new Tooltip("Execute Project F8"));
+
             input = new FileInputStream("src/Resources/LinkIcon.png");
             image = new Image(input);
             imageView = new ImageView(image);
@@ -74,6 +76,7 @@ public class HomeScene {
             image = new Image(input);
             imageView = new ImageView(image);
             Button executeButton = new Button("Execute", imageView);
+            executeButton.setTooltip(new Tooltip("Execute Project F9"));
 
             setToolBarButtonAction(compileButton);
             setToolBarButtonAction(executeButton);
