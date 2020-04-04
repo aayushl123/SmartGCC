@@ -252,10 +252,10 @@ public class Terminal {
                     writer.newLine();
                     writer.close();
                 }
-                else if(output.toString().contains("Copyright (C) 2020 Free Software Foundation, Inc.") ||
-                        output.toString().contains("This GDB was configured")){
-                    if(line.contains("Reading symbols from /")) {
+                else if(output.toString().contains("(lldb) target create")){
+                    if(line.contains("Current executable set to")) {
                         System.out.println(line);
+                        System.out.print("(lldb) ");
                         gdbSession(reader);
                     }
                     else{
@@ -319,7 +319,8 @@ public class Terminal {
      */
     public void debug(){
         //GDB MI is a external interface for managing the interaction without inter process communication
-        command = "cd src; cd Resources; set startup-with-shell off; gdb --interpreter=mi tempOut";
+        command = "cd src; cd Resources; set startup-with-shell off; lldb" +
+                " --interpreter=mi tempOut";
         fireCommand();
 
     }
@@ -336,7 +337,7 @@ public class Terminal {
                 "4. Delete existing breakpoints\n" +
                 "5. Go to next breakpoint\n" +
                 "6. Add breakpoint at the beginning of a function\n"+
-                "7. Quit\n";
+                "7. Quit\n" +"(lldb) ";
         display(head);
         String selOption = takeInputGDB();
         while(!selOption.equals("7")){
