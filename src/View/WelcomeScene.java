@@ -1,5 +1,6 @@
 package View;
 
+import Backend.UserClass;
 import Driver.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,7 +37,18 @@ public class WelcomeScene {
         radioButton2.setToggleGroup(radioGroup);
         radioButton3.setToggleGroup(radioGroup);
         submitButton.setOnAction(event -> {
-            Main.changeScene();});
+            RadioButton selectedButton = (RadioButton)radioGroup.getSelectedToggle();
+            String user;
+            String[] buttonText = selectedButton.getText().split(" ");
+            if(buttonText[1].charAt(0) == 'N')
+                user = "Novice";
+            else if (buttonText[1].charAt(0) == 'T')
+                user = "Typical";
+            else
+                user = "Expert";
+            UserClass.setUserType(user);
+            Main.changeScene();
+        });
 
         setImageView();
         VBox vbox = new VBox(20, imageView, playerLabel,radioButton1, radioButton2, radioButton3, submitButton);
