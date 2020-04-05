@@ -3,6 +3,8 @@ package View;
 import Backend.TermTester;
 import Backend.UserClass;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,9 +18,13 @@ public class ToolBarClass {
     private static Button linkButton;
     private static Button executeButton;
     private static Button debugButton;
-    private static Button codeGenerationButton;
-    private static Button codeOptimizationButton;
-    private static Button developerOptionsButton;
+    private static MenuButton typicalOptions;
+    private static MenuButton developerOptionsButton;
+
+    private static MenuItem codeGenerationButton;
+    private static MenuItem codeOptimizationButton;
+    private static MenuItem profileReportItem;
+    private static MenuItem stackReportItem;
     private static File file;
 
     public ToolBarClass(){
@@ -51,21 +57,31 @@ public class ToolBarClass {
             image = new Image(input);
             imageView = new ImageView(image);
             debugButton = new Button("Debug", imageView);
-            input = new FileInputStream("src/Resources/CodeGenerationIcon.png");
-            image = new Image(input);
-            imageView = new ImageView(image);
-            codeGenerationButton = new Button("Generate Code", imageView);
             input = new FileInputStream("src/Resources/CodeOptimizationIcon.jpg");
             image = new Image(input);
             imageView = new ImageView(image);
-            codeOptimizationButton = new Button("Optimize Code", imageView);
+            typicalOptions = new MenuButton("Typical Options", imageView);
             input = new FileInputStream("src/Resources/DeveloperOptionsIcon.jpg");
             image = new Image(input);
             imageView = new ImageView(image);
-            developerOptionsButton = new Button("Developer Options", imageView);
+            developerOptionsButton = new MenuButton("Developer Options", imageView);
 
-            setToolBarButtonAction(compileButton);
-            setToolBarButtonAction(executeButton);
+            codeGenerationButton = new MenuItem("Generate Code");
+            codeOptimizationButton = new MenuItem("Optimize Code");
+            profileReportItem = new MenuItem("Profile Report");
+            stackReportItem = new MenuItem("Stack Report");
+
+            typicalOptions.getItems().add(codeOptimizationButton);
+            typicalOptions.getItems().add(codeGenerationButton);
+            developerOptionsButton.getItems().add(profileReportItem);
+            developerOptionsButton.getItems().add(stackReportItem);
+
+            setToolBarButtonActionNovice(compileButton);
+            setToolBarButtonActionNovice(executeButton);
+            setToolBarButtonActionTypical(codeGenerationButton);
+            setToolBarButtonActionTypical(codeOptimizationButton);
+            setToolBarActionsDeveloper(profileReportItem);
+            setToolBarActionsDeveloper(stackReportItem);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -74,13 +90,12 @@ public class ToolBarClass {
     public static void setToolBarNovice(){
         toolBar.getItems().add(compileButton);
         toolBar.getItems().add(linkButton);
-        toolBar.getItems().add(executeButton);
         toolBar.getItems().add(debugButton);
+        toolBar.getItems().add(executeButton);
     }
 
     public static void setToolBarTypical(){
-        toolBar.getItems().add(codeGenerationButton);
-        toolBar.getItems().add(codeOptimizationButton);
+        toolBar.getItems().add(typicalOptions);
     }
 
     public static void setToolBarExpert(){
@@ -91,7 +106,7 @@ public class ToolBarClass {
         return toolBar;
     }
 
-    public static void setToolBarButtonAction(Button button){
+    public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
@@ -107,6 +122,39 @@ public class ToolBarClass {
                 TermTester.ToolBarActions(4, file.getName());
             });
         }
+    }
+
+    public static void setToolBarButtonActionTypical(MenuItem menuItem){
+        if(menuItem.getText().equalsIgnoreCase("Generate Code")){
+            menuItem.setOnAction(event -> {
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(8, file.getName());
+            });
+        }else if (menuItem.getText().equalsIgnoreCase("Optimize Code")){
+            menuItem.setOnAction(event -> {
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(5, file.getName());
+            });
+        }
+    }
+
+    public static void setToolBarActionsDeveloper(MenuItem menuItem){
+        if(menuItem.getText().equalsIgnoreCase("profile report")){
+            menuItem.setOnAction(event -> {
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(6, file.getName());
+            });
+        }else if(menuItem.getText().equalsIgnoreCase("stack report")){
+            menuItem.setOnAction(event -> {
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(7, file.getName());
+            });
+        }
+
     }
 
     public static void removeToolBarTypical(){
