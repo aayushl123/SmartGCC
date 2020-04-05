@@ -95,6 +95,7 @@ public class ToolBarClass {
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
                 //file.getName();
                 System.out.printf(""+file.getName());
@@ -102,6 +103,7 @@ public class ToolBarClass {
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(4, file.getName());
             });
         }

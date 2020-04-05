@@ -312,7 +312,7 @@ public class Terminal {
     Display any terminal responses to the console
      */
     public void display(String str){
-        ConsoleOutput.getOutputArea().setText(str);
+        ConsoleOutput.getOutputArea().appendText(str+"\n");
         System.out.println(str);
     }
 
