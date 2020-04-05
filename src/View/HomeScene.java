@@ -28,8 +28,8 @@ public class HomeScene {
     }
 
     public void setFile(File localFile,File originalFile) {
-        this.localFile = localFile;
-        this.originalFile=originalFile;
+        HomeScene.localFile = localFile;
+        HomeScene.originalFile=originalFile;
     }
 
     public static void setHomeScene(){

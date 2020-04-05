@@ -56,7 +56,7 @@ public class TermTester {
         t.setFileName("ProgFile.cpp");
         t.commandGen();*/
         Terminal t2 = new Terminal(option, fileName);
-        t2.commandGen();
+        //t2.commandGen();
         //Terminal t3 = new Terminal(7, "ProgFileSimple.cpp");
 
 

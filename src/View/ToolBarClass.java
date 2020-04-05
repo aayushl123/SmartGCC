@@ -92,16 +92,16 @@ public class ToolBarClass {
     }
 
     public static void setToolBarButtonAction(Button button){
-        HomeScene homeScene = new HomeScene();
-        file = homeScene.getFile();
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
+                file = HomeScene.getFile();
                 TermTester.ToolBarActions(1, file.getName());
                 //file.getName();
                 System.out.printf(""+file.getName());
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
+                file = HomeScene.getFile();
                 TermTester.ToolBarActions(4, file.getName());
             });
         }

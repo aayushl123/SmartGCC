@@ -171,7 +171,8 @@ public class MenuBarClass {
 
                 homeTextEditor.getTextArea().appendText(s.nextLine()+"\n");
             }
-            if(!originalFile.getName().contains("/src/Resources")) {
+            if(!originalFile.getAbsolutePath().contains("/src/Resources")) {
+                String name = originalFile.getName();
                 System.out.println(originalFile.getAbsolutePath());
                 saveAsTextToFile(homeTextEditor.getTextArea().getText(), originalFile);
             }
