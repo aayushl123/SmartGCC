@@ -16,23 +16,8 @@ public class TermTester {
         cmdInfo.put(7, "STACK_USAGE");
         cmdInfo.put(8, "ENABLE_EXCEPTIONS");
 
-        Terminal t1 = new Terminal(8, "ProgFileSimple.cpp");
-        //Terminal t = new Terminal();
-        //t.setOption(3);
-        //t.setFileName("ProgFile.cpp");
-        //t.commandGen();
-       // Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
-
-        //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
-        Terminal t = new Terminal();
-        t.setOption(2);
-        t.setFileName("ProgFileSimple.cpp");
-        t.commandGen();
-        Terminal t2 = new Terminal(4, "ProgFile.cpp");
-
-        //Terminal t3 = new Terminal(7, "ProgFileSimple.cpp");
-
-
+        Terminal t1 = new Terminal(7, "ProgFileSimple.cpp");
+        Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
     }
 
     /**
