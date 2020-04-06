@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ToolBarClass {
 
@@ -26,8 +28,9 @@ public class ToolBarClass {
     private static MenuItem profileReportItem;
     private static MenuItem stackReportItem;
     private static File file;
+    private static HomeTextEditor homeTextEditor;
 
-    public ToolBarClass(){
+    public ToolBarClass(HomeTextEditor homeTextEditor){
         toolBar = new ToolBar();
         initializeButtons();
         setToolBarNovice();
@@ -37,6 +40,7 @@ public class ToolBarClass {
             setToolBarTypical();
             setToolBarExpert();
         }
+        this.homeTextEditor = homeTextEditor;
     }
 
     public static void initializeButtons(){
@@ -78,6 +82,7 @@ public class ToolBarClass {
 
             setToolBarButtonActionNovice(compileButton);
             setToolBarButtonActionNovice(executeButton);
+            setToolBarButtonActionNovice(linkButton);
             setToolBarButtonActionTypical(codeGenerationButton);
             setToolBarButtonActionTypical(codeOptimizationButton);
             setToolBarActionsDeveloper(profileReportItem);
@@ -109,8 +114,12 @@ public class ToolBarClass {
     public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+                //System.out.println(homeTextEditor.getText());
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
                 //file.getName();
@@ -118,26 +127,79 @@ public class ToolBarClass {
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(4, file.getName());
             });
+        } else if(button.getText().equals("Linking")){
+            button.setOnAction(event -> {
+                file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(2, file.getName());
+            });
+        } else if(button.getText().equals("Debug")){
+            button.setOnAction(event -> {
+                // file = HomeScene.getFile();
+                //                if(file==null) {
+                //                    file=createNewFile();
+                //                }
+                //                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+                //ConsoleOutput.getOutputArea().setText("");
+                //TermTester.ToolBarActions(3, file.getName());
+            });
         }
+    }
+
+    // creates a new file in resources if user writes in editor
+    public static File createNewFile()  {
+
+        File localFile = new File("src/Resources/temp"+System.currentTimeMillis()+".cpp" );
+        try {
+            if (localFile.createNewFile()) {
+                System.out.println("File created: " + localFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            System.out.println("new in resources  "+localFile.getAbsolutePath());
+            PrintWriter writer = new PrintWriter(localFile);
+            writer.println(homeTextEditor.getText());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Saved file in Resources");
+        return localFile;
     }
 
     public static void setToolBarButtonActionTypical(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("Generate Code")){
             menuItem.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(8, file.getName());
             });
         }else if (menuItem.getText().equalsIgnoreCase("Optimize Code")){
             menuItem.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(5, file.getName());
             });
@@ -147,15 +209,21 @@ public class ToolBarClass {
     public static void setToolBarActionsDeveloper(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("profile report")){
             menuItem.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(6, file.getName());
             });
         }else if(menuItem.getText().equalsIgnoreCase("stack report")){
             menuItem.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(7, file.getName());
             });

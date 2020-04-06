@@ -126,7 +126,7 @@ public class MenuBarClass {
         }
     }
 
-    public void saveAsTextToFile(String content, File originalFile) {
+    public static void saveAsTextToFile(String content, File originalFile) {
         try {
             PrintWriter writer;
 

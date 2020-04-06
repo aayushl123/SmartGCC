@@ -33,11 +33,11 @@ public class HomeScene {
     }
 
     public static void setHomeScene(){
-        toolBarClass = new ToolBarClass();
-        toolBar = toolBarClass.getToolBar();
         homeTextEditor = new HomeTextEditor();
         homeTextEditor.setTextEditor();
         initializeConsoleOutput();
+        toolBarClass = new ToolBarClass(homeTextEditor);
+        toolBar = toolBarClass.getToolBar();
         menuBarClass = new MenuBarClass(homeTextEditor);
         menuBar = menuBarClass.getMenuBar();
         VBox vBox = new VBox(menuBar, toolBar, homeTextEditor.getTextEditor(),consoleOutput.getConsoleOutput());
