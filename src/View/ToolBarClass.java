@@ -109,6 +109,7 @@ public class ToolBarClass {
     public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
@@ -117,6 +118,7 @@ public class ToolBarClass {
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(4, file.getName());
@@ -127,12 +129,14 @@ public class ToolBarClass {
     public static void setToolBarButtonActionTypical(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("Generate Code")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(8, file.getName());
             });
         }else if (menuItem.getText().equalsIgnoreCase("Optimize Code")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(5, file.getName());
@@ -143,12 +147,14 @@ public class ToolBarClass {
     public static void setToolBarActionsDeveloper(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("profile report")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(6, file.getName());
             });
         }else if(menuItem.getText().equalsIgnoreCase("stack report")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(7, file.getName());
