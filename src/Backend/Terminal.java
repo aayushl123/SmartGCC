@@ -1,5 +1,6 @@
 package Backend;
 import View.ConsoleOutput;
+import javafx.scene.control.TextInputDialog;
 
 import javax.swing.*;
 import java.io.*;
@@ -242,15 +243,20 @@ public class Terminal {
 
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(process.getOutputStream()));
 
             while ((line = reader.readLine()) != null) {
                 if(line.contains("Input the value")) {
                     //any other user input in non debug execution
-                    String value = JOptionPane.showInputDialog(line);
-                    BufferedWriter writer = new BufferedWriter(
-                            new OutputStreamWriter(process.getOutputStream()));
-                    writer.write(value, 0, value.length());
-                    writer.newLine();
+                    TextInputDialog td = new TextInputDialog("enter input here");
+                    td.showAndWait();
+                    System.out.println(td.getDefaultValue());
+                    //String value = JOptionPane.showInputDialog(line);
+//                    writer.write(value, 0, value.length());
+                    writer.write(td.getEditor().getText(), 0, td.getEditor().getText().length());
+                    //writer.newLine();
+                    writer.flush();
                     writer.close();
                 }
                 else if(output.toString().contains("Copyright (C) 2020 Free Software Foundation, Inc.") ||
