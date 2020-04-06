@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ToolBarClass {
 
@@ -113,6 +115,9 @@ public class ToolBarClass {
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 //System.out.println(homeTextEditor.getText());
                 ConsoleOutput.getOutputArea().setText("");
@@ -140,6 +145,29 @@ public class ToolBarClass {
                 //TermTester.ToolBarActions(3, file.getName());
             });
         }
+    }
+
+    // creates a new file in resources if user writes in editor
+    public static File createNewFile()  {
+
+        File localFile = new File("src/Resources/temp"+System.currentTimeMillis()+".cpp" );
+        try {
+            if (localFile.createNewFile()) {
+                System.out.println("File created: " + localFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            System.out.println("new in resources  "+localFile.getAbsolutePath());
+            PrintWriter writer = new PrintWriter(localFile);
+            writer.println(homeTextEditor.getText());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Saved file in Resources");
+        return localFile;
     }
 
     public static void setToolBarButtonActionTypical(MenuItem menuItem){
