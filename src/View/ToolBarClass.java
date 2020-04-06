@@ -26,8 +26,9 @@ public class ToolBarClass {
     private static MenuItem profileReportItem;
     private static MenuItem stackReportItem;
     private static File file;
+    private static HomeTextEditor homeTextEditor;
 
-    public ToolBarClass(){
+    public ToolBarClass(HomeTextEditor homeTextEditor){
         toolBar = new ToolBar();
         initializeButtons();
         setToolBarNovice();
@@ -37,6 +38,7 @@ public class ToolBarClass {
             setToolBarTypical();
             setToolBarExpert();
         }
+        this.homeTextEditor = homeTextEditor;
     }
 
     public static void initializeButtons(){
@@ -111,6 +113,8 @@ public class ToolBarClass {
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+                //System.out.println(homeTextEditor.getText());
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
                 //file.getName();
