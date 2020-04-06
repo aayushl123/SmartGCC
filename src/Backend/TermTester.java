@@ -50,6 +50,7 @@ public class TermTester {
         cmdInfo.put(5, "OPTIMIZE");
         cmdInfo.put(6, "PROFILE_REPORT");
         cmdInfo.put(7, "STACK_USAGE");
+        cmdInfo.put(8, "ENABLE_EXCEPTIONS");
         //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
         /*Terminal t = new Terminal();
         t.setOption(3);

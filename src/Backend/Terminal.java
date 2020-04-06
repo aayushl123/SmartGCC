@@ -184,9 +184,7 @@ public class Terminal {
             File compileFile = new File("src/Resources/"+fileName);
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
-//            command = "cd src; cd Resources; rm -f tempOut.exe; rm -f tempProfReport.txt; g++ -fprofile-report " + absolutePath + " -o "+
-//                    "tempOut" + " 2> tempProfReport.txt";
-            command = "cd src; cd Resources; rm -f tempOut.exe; rm -f tempProfReport.txt; g++ -ftime-report " + absolutePath + " -o "+
+            command = "cd src; cd Resources; rm -f tempOut.exe; rm -f tempProfReport.txt; g++ -fprofile-report " + absolutePath + " -o "+
                     "tempOut" + " 2> tempProfReport.txt";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
@@ -273,6 +271,11 @@ public class Terminal {
             int exitVal = process.waitFor();
             if (exitVal == 0) {
 //                display("Success!");
+                if(option == 8){
+                    output.append("Code generated with exceptions");
+                }else if(option == 5){
+                    output.append("Code optimised");
+                }
                 display(output.toString());
             } else {
                 String lineErr;
@@ -375,6 +378,7 @@ public class Terminal {
             while((line = in.readLine()) != null)
             {
                 System.out.println(line);
+                ConsoleOutput.getOutputArea().appendText(line+"\n");
             }
             in.close();
             System.out.println("\n");
