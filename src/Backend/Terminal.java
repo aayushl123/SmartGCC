@@ -61,6 +61,7 @@ public class Terminal {
             command = "cd src; cd Resources; rm -f tempOut";                        // Deletes previous compilations
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
+                command = command.replace("rm -f tempOut"," del tempOut.exe 2>nul");
             }
             fireCommand();
 
@@ -78,7 +79,8 @@ public class Terminal {
         else if(option == 2){                                                   //Link
             command = "cd src; cd Resources; rm -f tempOut";                        // Deletes previous compilations
             if(os.startsWith("Win")){
-                command = command.replace(";","&");
+                command = command.replace(";"," &");
+                command = command.replace("rm -f tempOut","del tempOut.exe 2>nul");
             }
             fireCommand();
             String curPath = System.getProperty("user.dir");
@@ -211,9 +213,11 @@ public class Terminal {
             command = "cd src; cd Resources; rm -f tempOut; g++ -O2 " + absolutePath + " -o "+ "tempOut";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
+                command = command.replace("rm -f tempOut","del tempOut.exe 2>nul");
             }
             output.setLength(0);
             outputErr.setLength(0);
+            System.out.println(command);
             fireCommand();
         }
 
@@ -225,6 +229,8 @@ public class Terminal {
                     "tempOut" + " 2> tempProfReport.txt";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
+                command = command.replace("rm -f tempOut.exe","del tempOut.exe 2>nul");
+                command = command.replace("rm -f tempProfReport.txt","del tempProfReport.txt 2>nul");
             }
             output.setLength(0);
             outputErr.setLength(0);
@@ -239,10 +245,11 @@ public class Terminal {
             command = null;
             command = "cd src; cd Resources; rm -f tempOut.exe; rm -f "+suFileName+"; g++ -fstack-usage " + absolutePath + " -o "+ "tempOut.exe";
             if(os.startsWith("Win")){
-                command = command.replace(";"," &");
+                command = "cd src & cd Resources & del tempOut.exe 2>nul & del " +suFileName+ " 2>nul & g++ -fstack-usage " + absolutePath + " -o "+ "tempOut.exe";
             }
             output.setLength(0);
             outputErr.setLength(0);
+            System.out.println(command);
             fireCommand();
             readFile(suFileName);
         }
@@ -253,6 +260,7 @@ public class Terminal {
             command = "cd src; cd Resources; rm -f tempOut.exe; g++ -fexceptions " + absolutePath + " -o "+ "tempOut.exe";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
+                command = command.replace("rm -f tempOut.exe","del tempOut.exe 2>nul");
             }
             output.setLength(0);
             outputErr.setLength(0);
