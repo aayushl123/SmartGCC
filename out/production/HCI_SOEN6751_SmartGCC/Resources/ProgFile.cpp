@@ -6,4 +6,3 @@ int main() {
 	std::cout << "Sagar" <<std::endl;
 	return 0;
 }
-hh

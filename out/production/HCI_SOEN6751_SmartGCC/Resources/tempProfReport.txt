@@ -3,238 +3,238 @@
 ===-------------------------------------------------------------------------===
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0128 ( 53.7%)   0.0041 ( 75.6%)   0.0169 ( 57.8%)   0.0169 ( 57.6%)  Code Generation Time
-   0.0110 ( 46.3%)   0.0013 ( 24.4%)   0.0123 ( 42.2%)   0.0125 ( 42.4%)  LLVM IR Generation Time
-   0.0238 (100.0%)   0.0054 (100.0%)   0.0293 (100.0%)   0.0294 (100.0%)  Total
+   0.0142 ( 53.2%)   0.1236 ( 74.4%)   0.1378 ( 71.5%)   0.1514 ( 71.9%)  Code Generation Time
+   0.0125 ( 46.8%)   0.0424 ( 25.6%)   0.0549 ( 28.5%)   0.0593 ( 28.1%)  LLVM IR Generation Time
+   0.0267 (100.0%)   0.1660 (100.0%)   0.1927 (100.0%)   0.2107 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                       Instruction Selection and Scheduling
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0019 seconds (0.0018 wall clock)
+  Total Execution Time: 0.0336 seconds (0.0370 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0004 ( 26.4%)   0.0000 ( 19.1%)   0.0005 ( 25.4%)   0.0005 ( 25.5%)  Instruction Selection
-   0.0003 ( 19.8%)   0.0001 ( 22.8%)   0.0004 ( 20.2%)   0.0004 ( 20.1%)  DAG Combining 1
-   0.0003 ( 17.3%)   0.0000 ( 13.7%)   0.0003 ( 16.8%)   0.0003 ( 17.0%)  Instruction Scheduling
-   0.0002 ( 11.0%)   0.0000 ( 19.5%)   0.0002 ( 12.1%)   0.0002 ( 11.9%)  Instruction Creation
-   0.0002 ( 11.5%)   0.0000 (  4.1%)   0.0002 ( 10.6%)   0.0002 ( 10.5%)  DAG Combining 2
-   0.0001 (  5.3%)   0.0000 (  5.8%)   0.0001 (  5.3%)   0.0001 (  5.3%)  DAG Legalization
-   0.0001 (  3.9%)   0.0000 (  5.4%)   0.0001 (  4.1%)   0.0001 (  4.3%)  Type Legalization
-   0.0000 (  3.0%)   0.0000 (  2.9%)   0.0001 (  3.0%)   0.0001 (  3.2%)  Instruction Scheduling Cleanup
-   0.0000 (  1.2%)   0.0000 (  4.6%)   0.0000 (  1.6%)   0.0000 (  1.3%)  Vector Legalization
-   0.0000 (  0.8%)   0.0000 (  2.1%)   0.0000 (  1.0%)   0.0000 (  1.0%)  DAG Combining after legalize types
-   0.0016 (100.0%)   0.0002 (100.0%)   0.0019 (100.0%)   0.0018 (100.0%)  Total
+   0.0004 ( 21.4%)   0.0113 ( 35.5%)   0.0117 ( 34.7%)   0.0125 ( 33.6%)  DAG Combining 1
+   0.0004 ( 23.2%)   0.0088 ( 27.6%)   0.0092 ( 27.4%)   0.0092 ( 24.9%)  Instruction Selection
+   0.0003 ( 16.4%)   0.0030 (  9.5%)   0.0033 (  9.8%)   0.0040 ( 10.9%)  Instruction Scheduling
+   0.0002 ( 12.8%)   0.0018 (  5.8%)   0.0021 (  6.2%)   0.0040 ( 10.7%)  DAG Combining 2
+   0.0001 (  5.5%)   0.0026 (  8.3%)   0.0027 (  8.2%)   0.0027 (  7.4%)  DAG Legalization
+   0.0001 (  4.0%)   0.0017 (  5.4%)   0.0018 (  5.3%)   0.0018 (  4.8%)  Type Legalization
+   0.0002 ( 11.7%)   0.0011 (  3.4%)   0.0013 (  3.9%)   0.0013 (  3.5%)  Instruction Creation
+   0.0000 (  1.0%)   0.0011 (  3.5%)   0.0011 (  3.4%)   0.0011 (  3.1%)  DAG Combining after legalize types
+   0.0000 (  1.2%)   0.0003 (  0.9%)   0.0003 (  0.9%)   0.0003 (  0.9%)  Vector Legalization
+   0.0001 (  2.8%)   0.0000 (  0.0%)   0.0001 (  0.2%)   0.0001 (  0.2%)  Instruction Scheduling Cleanup
+   0.0018 (100.0%)   0.0318 (100.0%)   0.0336 (100.0%)   0.0370 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                                  DWARF Emission
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0002 seconds (0.0003 wall clock)
+  Total Execution Time: 0.0033 seconds (0.0033 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0001 ( 63.3%)   0.0000 ( 42.1%)   0.0001 ( 56.6%)   0.0002 ( 59.8%)  DWARF Exception Writer
-   0.0001 ( 35.5%)   0.0000 ( 55.3%)   0.0001 ( 41.7%)   0.0001 ( 38.7%)  Debug Info Emission
-   0.0000 (  1.2%)   0.0000 (  2.6%)   0.0000 (  1.7%)   0.0000 (  1.5%)  DWARF Debug Writer
-   0.0002 (100.0%)   0.0001 (100.0%)   0.0002 (100.0%)   0.0003 (100.0%)  Total
+   0.0001 ( 61.1%)   0.0016 ( 52.2%)   0.0017 ( 52.7%)   0.0017 ( 52.9%)  DWARF Exception Writer
+   0.0001 ( 37.8%)   0.0014 ( 47.0%)   0.0015 ( 46.5%)   0.0015 ( 46.3%)  Debug Info Emission
+   0.0000 (  1.1%)   0.0000 (  0.7%)   0.0000 (  0.8%)   0.0000 (  0.8%)  DWARF Debug Writer
+   0.0002 (100.0%)   0.0031 (100.0%)   0.0033 (100.0%)   0.0033 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                       ... Pass execution timing report ...
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0110 seconds (0.0110 wall clock)
+  Total Execution Time: 0.0973 seconds (0.1094 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0035 ( 39.0%)   0.0005 ( 23.4%)   0.0040 ( 36.0%)   0.0040 ( 36.0%)  X86 DAG->DAG Instruction Selection
-   0.0009 ( 10.0%)   0.0002 (  8.8%)   0.0011 (  9.7%)   0.0011 (  9.7%)  X86 Assembly Printer
-   0.0007 (  8.0%)   0.0001 (  7.0%)   0.0009 (  7.8%)   0.0009 (  7.8%)  Lower operations on the matrix type
-   0.0005 (  5.5%)   0.0000 (  1.6%)   0.0005 (  4.7%)   0.0005 (  4.6%)  Prologue/Epilogue Insertion & Frame Finalization
-   0.0004 (  4.0%)   0.0000 (  1.5%)   0.0004 (  3.5%)   0.0004 (  3.5%)  Fast Register Allocator
-   0.0001 (  1.7%)   0.0000 (  1.2%)   0.0002 (  1.6%)   0.0002 (  1.6%)  Two-Address instruction pass
-   0.0001 (  1.4%)   0.0000 (  1.0%)   0.0001 (  1.3%)   0.0002 (  1.5%)  Dominator Tree Construction #3
-   0.0001 (  1.7%)   0.0000 (  1.3%)   0.0002 (  1.6%)   0.0002 (  1.5%)  MachineDominator Tree Construction
-   0.0001 (  1.4%)   0.0000 (  1.9%)   0.0002 (  1.5%)   0.0002 (  1.4%)  Inliner for always_inline functions
-   0.0001 (  1.6%)   0.0000 (  1.0%)   0.0002 (  1.5%)   0.0002 (  1.4%)  Free MachineFunction
-   0.0001 (  1.5%)   0.0000 (  0.8%)   0.0002 (  1.4%)   0.0001 (  1.3%)  Insert stack protectors
-   0.0001 (  1.2%)   0.0000 (  1.2%)   0.0001 (  1.2%)   0.0001 (  1.2%)  Dominator Tree Construction
-   0.0001 (  1.0%)   0.0001 (  2.5%)   0.0001 (  1.3%)   0.0001 (  1.2%)  Dominator Tree Construction #2
-   0.0001 (  0.9%)   0.0000 (  1.3%)   0.0001 (  1.0%)   0.0001 (  1.0%)  Exception handling preparation
-   0.0001 (  0.9%)   0.0000 (  1.1%)   0.0001 (  1.0%)   0.0001 (  1.0%)  Natural Loop Information
-   0.0001 (  0.9%)   0.0000 (  1.2%)   0.0001 (  1.0%)   0.0001 (  0.9%)  X86 EFLAGS copy lowering
-   0.0001 (  0.7%)   0.0000 (  1.0%)   0.0001 (  0.7%)   0.0001 (  0.8%)  Expand Atomic instructions
-   0.0001 (  0.7%)   0.0000 (  1.1%)   0.0001 (  0.8%)   0.0001 (  0.8%)  Finalize ISel and expand pseudo-instructions
-   0.0000 (  0.5%)   0.0000 (  1.0%)   0.0001 (  0.6%)   0.0001 (  0.8%)  Eliminate PHI nodes for register allocation
-   0.0001 (  0.6%)   0.0000 (  1.4%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Post-RA pseudo instruction expansion pass
-   0.0001 (  0.7%)   0.0000 (  0.8%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Expand reduction intrinsics
-   0.0001 (  0.6%)   0.0000 (  1.1%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Remove unreachable blocks from the CFG
-   0.0001 (  0.6%)   0.0000 (  1.0%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Scalarize Masked Memory Intrinsics
-   0.0001 (  0.6%)   0.0000 (  1.3%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Basic Alias Analysis (stateless AA impl)
-   0.0001 (  0.6%)   0.0000 (  0.8%)   0.0001 (  0.7%)   0.0001 (  0.6%)  Function Alias Analysis Results
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0001 (  0.6%)  X86 speculative load hardening
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Expand indirectbr instructions
-   0.0000 (  0.5%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Insert fentry calls
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Instrument function entry/exit with calls to e.g. mcount() (pre inlining)
-   0.0001 (  0.7%)   0.0000 (  0.3%)   0.0001 (  0.6%)   0.0001 (  0.6%)  CallGraph Construction
-   0.0000 (  0.4%)   0.0000 (  1.2%)   0.0001 (  0.6%)   0.0001 (  0.6%)  Implement the 'patchable-function' attribute
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.6%)   0.0001 (  0.6%)  X86 Indirect Branch Tracking
-   0.0000 (  0.5%)   0.0000 (  1.0%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Machine Optimization Remark Emitter
-   0.0000 (  0.4%)   0.0000 (  0.7%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Lazy Branch Probability Analysis
-   0.0000 (  0.5%)   0.0000 (  0.9%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Basic Alias Analysis (stateless AA impl) #2
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Contiguously Lay Out Funclets
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Local Stack Slot Allocation
-   0.0000 (  0.5%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Machine Optimization Remark Emitter #2
-   0.0000 (  0.5%)   0.0000 (  1.1%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Bundle Machine CFG Edges
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Insert XRay ops
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0000 (  0.5%)   0.0001 (  0.5%)  Analyze Machine Code For Garbage Collection
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Instrument function entry/exit with calls to e.g. mcount() (post inlining)
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 FP Stackifier
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 DynAlloca Expander
-   0.0000 (  0.3%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0001 (  0.5%)  StackMap Liveness Analysis
-   0.0000 (  0.3%)   0.0000 (  1.2%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Optimization Remark Emitter
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 pseudo instruction expansion pass
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 Darwin Stack Probe Emitter
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0001 (  0.5%)  X86 Retpoline Thunks
-   0.0000 (  0.3%)   0.0000 (  0.8%)   0.0000 (  0.4%)   0.0001 (  0.5%)  Lazy Machine Block Frequency Analysis
-   0.0000 (  0.2%)   0.0000 (  1.2%)   0.0000 (  0.4%)   0.0001 (  0.5%)  Lazy Machine Block Frequency Analysis #2
-   0.0000 (  0.3%)   0.0000 (  1.0%)   0.0000 (  0.4%)   0.0001 (  0.5%)  X86 Insert Cache Prefetches
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Shadow Stack GC Lowering
-   0.0000 (  0.2%)   0.0000 (  0.8%)   0.0000 (  0.4%)   0.0000 (  0.5%)  Lower Garbage Collection Instructions
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0000 (  0.4%)  X86 Discriminate Memory Operands
-   0.0000 (  0.4%)   0.0000 (  1.2%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Live DEBUG_VALUE analysis
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Lazy Block Frequency Analysis
-   0.0000 (  0.3%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0000 (  0.4%)  X86 vzeroupper inserter
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Safe Stack instrumentation pass
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0000 (  0.4%)  X86 PIC Global Base Reg Initialization
-   0.0000 (  0.1%)   0.0000 (  0.1%)   0.0000 (  0.1%)   0.0000 (  0.1%)  Assumption Cache Tracker
-   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.1%)  Assumption Cache Tracker #2
+   0.0041 ( 41.7%)   0.0616 ( 70.5%)   0.0658 ( 67.5%)   0.0746 ( 68.2%)  X86 DAG->DAG Instruction Selection
+   0.0002 (  2.0%)   0.0043 (  4.9%)   0.0045 (  4.6%)   0.0072 (  6.6%)  Inliner for always_inline functions
+   0.0009 (  9.4%)   0.0048 (  5.5%)   0.0058 (  5.9%)   0.0058 (  5.3%)  X86 Assembly Printer
+   0.0007 (  7.2%)   0.0050 (  5.7%)   0.0057 (  5.9%)   0.0057 (  5.2%)  Lower operations on the matrix type
+   0.0005 (  5.2%)   0.0024 (  2.8%)   0.0029 (  3.0%)   0.0029 (  2.7%)  Prologue/Epilogue Insertion & Frame Finalization
+   0.0000 (  0.5%)   0.0012 (  1.4%)   0.0012 (  1.3%)   0.0012 (  1.1%)  Eliminate PHI nodes for register allocation
+   0.0001 (  0.7%)   0.0006 (  0.7%)   0.0007 (  0.7%)   0.0012 (  1.1%)  Remove unreachable blocks from the CFG
+   0.0004 (  3.9%)   0.0008 (  0.9%)   0.0012 (  1.2%)   0.0012 (  1.1%)  Fast Register Allocator
+   0.0002 (  1.7%)   0.0009 (  1.1%)   0.0011 (  1.1%)   0.0011 (  1.0%)  Two-Address instruction pass
+   0.0001 (  0.7%)   0.0008 (  0.9%)   0.0009 (  0.9%)   0.0009 (  0.8%)  Natural Loop Information
+   0.0000 (  0.5%)   0.0006 (  0.7%)   0.0007 (  0.7%)   0.0007 (  0.6%)  Basic Alias Analysis (stateless AA impl)
+   0.0001 (  1.4%)   0.0005 (  0.6%)   0.0006 (  0.6%)   0.0006 (  0.6%)  Insert stack protectors
+   0.0001 (  0.6%)   0.0005 (  0.6%)   0.0006 (  0.6%)   0.0006 (  0.5%)  Post-RA pseudo instruction expansion pass
+   0.0001 (  0.6%)   0.0004 (  0.5%)   0.0005 (  0.5%)   0.0005 (  0.4%)  Expand indirectbr instructions
+   0.0001 (  1.2%)   0.0003 (  0.3%)   0.0004 (  0.4%)   0.0004 (  0.4%)  Dominator Tree Construction
+   0.0001 (  0.7%)   0.0003 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)  CallGraph Construction
+   0.0000 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)  Local Stack Slot Allocation
+   0.0001 (  0.8%)   0.0003 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  X86 EFLAGS copy lowering
+   0.0001 (  0.5%)   0.0003 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  Expand reduction intrinsics
+   0.0001 (  0.9%)   0.0002 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  Exception handling preparation
+   0.0000 (  0.4%)   0.0002 (  0.2%)   0.0003 (  0.3%)   0.0003 (  0.2%)  Insert XRay ops
+   0.0002 (  1.5%)   0.0001 (  0.1%)   0.0002 (  0.2%)   0.0002 (  0.2%)  MachineDominator Tree Construction
+   0.0001 (  1.4%)   0.0000 (  0.0%)   0.0002 (  0.2%)   0.0002 (  0.2%)  Free MachineFunction
+   0.0001 (  1.4%)   0.0000 (  0.0%)   0.0002 (  0.2%)   0.0002 (  0.1%)  Dominator Tree Construction #3
+   0.0001 (  1.1%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Dominator Tree Construction #2
+   0.0001 (  1.0%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Expand Atomic instructions
+   0.0001 (  0.6%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Scalarize Masked Memory Intrinsics
+   0.0001 (  0.7%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Finalize ISel and expand pseudo-instructions
+   0.0001 (  0.5%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Function Alias Analysis Results
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Live DEBUG_VALUE analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Contiguously Lay Out Funclets
+   0.0001 (  0.6%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Basic Alias Analysis (stateless AA impl) #2
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Machine Optimization Remark Emitter #2
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Discriminate Memory Operands
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Indirect Branch Tracking
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Machine Optimization Remark Emitter
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 pseudo instruction expansion pass
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Retpoline Thunks
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Instrument function entry/exit with calls to e.g. mcount() (pre inlining)
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Bundle Machine CFG Edges
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Instrument function entry/exit with calls to e.g. mcount() (post inlining)
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Lazy Branch Probability Analysis
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.0%)  Safe Stack instrumentation pass
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0001 (  0.0%)  X86 PIC Global Base Reg Initialization
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0001 (  0.0%)  X86 Darwin Stack Probe Emitter
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.0%)  Analyze Machine Code For Garbage Collection
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 speculative load hardening
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Insert fentry calls
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 FP Stackifier
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Implement the 'patchable-function' attribute
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.0%)  Lazy Block Frequency Analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Optimization Remark Emitter
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Shadow Stack GC Lowering
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 DynAlloca Expander
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Lazy Machine Block Frequency Analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Lazy Machine Block Frequency Analysis #2
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  StackMap Liveness Analysis
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  X86 vzeroupper inserter
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Lower Garbage Collection Instructions
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.0%)  X86 Insert Cache Prefetches
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Assumption Cache Tracker
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Rewrite Symbols
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Pre-ISel Intrinsic Lowering
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Profile summary info
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Module Information
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Assumption Cache Tracker #2
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Pre-ISel Intrinsic Lowering
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Force set function attributes
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Pass Configuration
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Branch Probability Analysis
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Library Information #2
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Create Garbage Collector Module Metadata
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Profile summary info
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Library Information
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Module Information
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Create Garbage Collector Module Metadata
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Branch Probability Analysis
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information #2
-   0.0089 (100.0%)   0.0021 (100.0%)   0.0110 (100.0%)   0.0110 (100.0%)  Total
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Library Information #2
+   0.0099 (100.0%)   0.0875 (100.0%)   0.0973 (100.0%)   0.1094 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                           Clang front-end time report
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.3607 seconds (0.4303 wall clock)
+  Total Execution Time: 0.7478 seconds (0.9192 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.3097 (100.0%)   0.0510 (100.0%)   0.3607 (100.0%)   0.4303 (100.0%)  Clang front-end timer
-   0.3097 (100.0%)   0.0510 (100.0%)   0.3607 (100.0%)   0.4303 (100.0%)  Total
+   0.3515 (100.0%)   0.3963 (100.0%)   0.7478 (100.0%)   0.9192 (100.0%)  Clang front-end timer
+   0.3515 (100.0%)   0.3963 (100.0%)   0.7478 (100.0%)   0.9192 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                                  DWARF Emission
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0002 seconds (0.0003 wall clock)
+  Total Execution Time: 0.0033 seconds (0.0033 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0001 ( 63.3%)   0.0000 ( 42.1%)   0.0001 ( 56.6%)   0.0002 ( 59.8%)  DWARF Exception Writer
-   0.0001 ( 35.5%)   0.0000 ( 55.3%)   0.0001 ( 41.7%)   0.0001 ( 38.7%)  Debug Info Emission
-   0.0000 (  1.2%)   0.0000 (  2.6%)   0.0000 (  1.7%)   0.0000 (  1.5%)  DWARF Debug Writer
-   0.0002 (100.0%)   0.0001 (100.0%)   0.0002 (100.0%)   0.0003 (100.0%)  Total
+   0.0001 ( 61.1%)   0.0016 ( 52.2%)   0.0017 ( 52.7%)   0.0017 ( 52.9%)  DWARF Exception Writer
+   0.0001 ( 37.8%)   0.0014 ( 47.0%)   0.0015 ( 46.5%)   0.0015 ( 46.3%)  Debug Info Emission
+   0.0000 (  1.1%)   0.0000 (  0.7%)   0.0000 (  0.8%)   0.0000 (  0.8%)  DWARF Debug Writer
+   0.0002 (100.0%)   0.0031 (100.0%)   0.0033 (100.0%)   0.0033 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                       Instruction Selection and Scheduling
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0019 seconds (0.0018 wall clock)
+  Total Execution Time: 0.0336 seconds (0.0370 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0004 ( 26.4%)   0.0000 ( 19.1%)   0.0005 ( 25.4%)   0.0005 ( 25.5%)  Instruction Selection
-   0.0003 ( 19.8%)   0.0001 ( 22.8%)   0.0004 ( 20.2%)   0.0004 ( 20.1%)  DAG Combining 1
-   0.0003 ( 17.3%)   0.0000 ( 13.7%)   0.0003 ( 16.8%)   0.0003 ( 17.0%)  Instruction Scheduling
-   0.0002 ( 11.0%)   0.0000 ( 19.5%)   0.0002 ( 12.1%)   0.0002 ( 11.9%)  Instruction Creation
-   0.0002 ( 11.5%)   0.0000 (  4.1%)   0.0002 ( 10.6%)   0.0002 ( 10.5%)  DAG Combining 2
-   0.0001 (  5.3%)   0.0000 (  5.8%)   0.0001 (  5.3%)   0.0001 (  5.3%)  DAG Legalization
-   0.0001 (  3.9%)   0.0000 (  5.4%)   0.0001 (  4.1%)   0.0001 (  4.3%)  Type Legalization
-   0.0000 (  3.0%)   0.0000 (  2.9%)   0.0001 (  3.0%)   0.0001 (  3.2%)  Instruction Scheduling Cleanup
-   0.0000 (  1.2%)   0.0000 (  4.6%)   0.0000 (  1.6%)   0.0000 (  1.3%)  Vector Legalization
-   0.0000 (  0.8%)   0.0000 (  2.1%)   0.0000 (  1.0%)   0.0000 (  1.0%)  DAG Combining after legalize types
-   0.0016 (100.0%)   0.0002 (100.0%)   0.0019 (100.0%)   0.0018 (100.0%)  Total
+   0.0004 ( 21.4%)   0.0113 ( 35.5%)   0.0117 ( 34.7%)   0.0125 ( 33.6%)  DAG Combining 1
+   0.0004 ( 23.2%)   0.0088 ( 27.6%)   0.0092 ( 27.4%)   0.0092 ( 24.9%)  Instruction Selection
+   0.0003 ( 16.4%)   0.0030 (  9.5%)   0.0033 (  9.8%)   0.0040 ( 10.9%)  Instruction Scheduling
+   0.0002 ( 12.8%)   0.0018 (  5.8%)   0.0021 (  6.2%)   0.0040 ( 10.7%)  DAG Combining 2
+   0.0001 (  5.5%)   0.0026 (  8.3%)   0.0027 (  8.2%)   0.0027 (  7.4%)  DAG Legalization
+   0.0001 (  4.0%)   0.0017 (  5.4%)   0.0018 (  5.3%)   0.0018 (  4.8%)  Type Legalization
+   0.0002 ( 11.7%)   0.0011 (  3.4%)   0.0013 (  3.9%)   0.0013 (  3.5%)  Instruction Creation
+   0.0000 (  1.0%)   0.0011 (  3.5%)   0.0011 (  3.4%)   0.0011 (  3.1%)  DAG Combining after legalize types
+   0.0000 (  1.2%)   0.0003 (  0.9%)   0.0003 (  0.9%)   0.0003 (  0.9%)  Vector Legalization
+   0.0001 (  2.8%)   0.0000 (  0.0%)   0.0001 (  0.2%)   0.0001 (  0.2%)  Instruction Scheduling Cleanup
+   0.0018 (100.0%)   0.0318 (100.0%)   0.0336 (100.0%)   0.0370 (100.0%)  Total
 
 ===-------------------------------------------------------------------------===
                       ... Pass execution timing report ...
 ===-------------------------------------------------------------------------===
-  Total Execution Time: 0.0110 seconds (0.0110 wall clock)
+  Total Execution Time: 0.0973 seconds (0.1094 wall clock)
 
    ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
-   0.0035 ( 39.0%)   0.0005 ( 23.4%)   0.0040 ( 36.0%)   0.0040 ( 36.0%)  X86 DAG->DAG Instruction Selection
-   0.0009 ( 10.0%)   0.0002 (  8.8%)   0.0011 (  9.7%)   0.0011 (  9.7%)  X86 Assembly Printer
-   0.0007 (  8.0%)   0.0001 (  7.0%)   0.0009 (  7.8%)   0.0009 (  7.8%)  Lower operations on the matrix type
-   0.0005 (  5.5%)   0.0000 (  1.6%)   0.0005 (  4.7%)   0.0005 (  4.6%)  Prologue/Epilogue Insertion & Frame Finalization
-   0.0004 (  4.0%)   0.0000 (  1.5%)   0.0004 (  3.5%)   0.0004 (  3.5%)  Fast Register Allocator
-   0.0001 (  1.7%)   0.0000 (  1.2%)   0.0002 (  1.6%)   0.0002 (  1.6%)  Two-Address instruction pass
-   0.0001 (  1.4%)   0.0000 (  1.0%)   0.0001 (  1.3%)   0.0002 (  1.5%)  Dominator Tree Construction #3
-   0.0001 (  1.7%)   0.0000 (  1.3%)   0.0002 (  1.6%)   0.0002 (  1.5%)  MachineDominator Tree Construction
-   0.0001 (  1.4%)   0.0000 (  1.9%)   0.0002 (  1.5%)   0.0002 (  1.4%)  Inliner for always_inline functions
-   0.0001 (  1.6%)   0.0000 (  1.0%)   0.0002 (  1.5%)   0.0002 (  1.4%)  Free MachineFunction
-   0.0001 (  1.5%)   0.0000 (  0.8%)   0.0002 (  1.4%)   0.0001 (  1.3%)  Insert stack protectors
-   0.0001 (  1.2%)   0.0000 (  1.2%)   0.0001 (  1.2%)   0.0001 (  1.2%)  Dominator Tree Construction
-   0.0001 (  1.0%)   0.0001 (  2.5%)   0.0001 (  1.3%)   0.0001 (  1.2%)  Dominator Tree Construction #2
-   0.0001 (  0.9%)   0.0000 (  1.3%)   0.0001 (  1.0%)   0.0001 (  1.0%)  Exception handling preparation
-   0.0001 (  0.9%)   0.0000 (  1.1%)   0.0001 (  1.0%)   0.0001 (  1.0%)  Natural Loop Information
-   0.0001 (  0.9%)   0.0000 (  1.2%)   0.0001 (  1.0%)   0.0001 (  0.9%)  X86 EFLAGS copy lowering
-   0.0001 (  0.7%)   0.0000 (  1.0%)   0.0001 (  0.7%)   0.0001 (  0.8%)  Expand Atomic instructions
-   0.0001 (  0.7%)   0.0000 (  1.1%)   0.0001 (  0.8%)   0.0001 (  0.8%)  Finalize ISel and expand pseudo-instructions
-   0.0000 (  0.5%)   0.0000 (  1.0%)   0.0001 (  0.6%)   0.0001 (  0.8%)  Eliminate PHI nodes for register allocation
-   0.0001 (  0.6%)   0.0000 (  1.4%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Post-RA pseudo instruction expansion pass
-   0.0001 (  0.7%)   0.0000 (  0.8%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Expand reduction intrinsics
-   0.0001 (  0.6%)   0.0000 (  1.1%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Remove unreachable blocks from the CFG
-   0.0001 (  0.6%)   0.0000 (  1.0%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Scalarize Masked Memory Intrinsics
-   0.0001 (  0.6%)   0.0000 (  1.3%)   0.0001 (  0.7%)   0.0001 (  0.7%)  Basic Alias Analysis (stateless AA impl)
-   0.0001 (  0.6%)   0.0000 (  0.8%)   0.0001 (  0.7%)   0.0001 (  0.6%)  Function Alias Analysis Results
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0001 (  0.6%)  X86 speculative load hardening
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Expand indirectbr instructions
-   0.0000 (  0.5%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Insert fentry calls
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.6%)  Instrument function entry/exit with calls to e.g. mcount() (pre inlining)
-   0.0001 (  0.7%)   0.0000 (  0.3%)   0.0001 (  0.6%)   0.0001 (  0.6%)  CallGraph Construction
-   0.0000 (  0.4%)   0.0000 (  1.2%)   0.0001 (  0.6%)   0.0001 (  0.6%)  Implement the 'patchable-function' attribute
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.6%)   0.0001 (  0.6%)  X86 Indirect Branch Tracking
-   0.0000 (  0.5%)   0.0000 (  1.0%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Machine Optimization Remark Emitter
-   0.0000 (  0.4%)   0.0000 (  0.7%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Lazy Branch Probability Analysis
-   0.0000 (  0.5%)   0.0000 (  0.9%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Basic Alias Analysis (stateless AA impl) #2
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Contiguously Lay Out Funclets
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Local Stack Slot Allocation
-   0.0000 (  0.5%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Machine Optimization Remark Emitter #2
-   0.0000 (  0.5%)   0.0000 (  1.1%)   0.0001 (  0.6%)   0.0001 (  0.5%)  Bundle Machine CFG Edges
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Insert XRay ops
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0000 (  0.5%)   0.0001 (  0.5%)  Analyze Machine Code For Garbage Collection
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Instrument function entry/exit with calls to e.g. mcount() (post inlining)
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 FP Stackifier
-   0.0000 (  0.3%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0001 (  0.5%)  StackMap Liveness Analysis
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 DynAlloca Expander
-   0.0000 (  0.3%)   0.0000 (  1.2%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Optimization Remark Emitter
-   0.0000 (  0.4%)   0.0000 (  0.8%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 pseudo instruction expansion pass
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  X86 Darwin Stack Probe Emitter
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0001 (  0.5%)  X86 Retpoline Thunks
-   0.0000 (  0.3%)   0.0000 (  0.8%)   0.0000 (  0.4%)   0.0001 (  0.5%)  Lazy Machine Block Frequency Analysis
-   0.0000 (  0.3%)   0.0000 (  1.0%)   0.0000 (  0.4%)   0.0001 (  0.5%)  X86 Insert Cache Prefetches
-   0.0000 (  0.2%)   0.0000 (  1.2%)   0.0000 (  0.4%)   0.0001 (  0.5%)  Lazy Machine Block Frequency Analysis #2
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0001 (  0.5%)  Shadow Stack GC Lowering
-   0.0000 (  0.2%)   0.0000 (  0.8%)   0.0000 (  0.4%)   0.0000 (  0.5%)  Lower Garbage Collection Instructions
-   0.0000 (  0.3%)   0.0000 (  0.9%)   0.0000 (  0.4%)   0.0000 (  0.4%)  X86 Discriminate Memory Operands
-   0.0000 (  0.4%)   0.0000 (  1.2%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Live DEBUG_VALUE analysis
-   0.0000 (  0.4%)   0.0000 (  1.0%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Lazy Block Frequency Analysis
-   0.0000 (  0.3%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0000 (  0.4%)  X86 vzeroupper inserter
-   0.0000 (  0.4%)   0.0000 (  1.1%)   0.0001 (  0.5%)   0.0000 (  0.4%)  Safe Stack instrumentation pass
-   0.0000 (  0.4%)   0.0000 (  0.9%)   0.0001 (  0.5%)   0.0000 (  0.4%)  X86 PIC Global Base Reg Initialization
-   0.0000 (  0.1%)   0.0000 (  0.1%)   0.0000 (  0.1%)   0.0000 (  0.1%)  Assumption Cache Tracker
-   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.1%)  Assumption Cache Tracker #2
+   0.0041 ( 41.7%)   0.0616 ( 70.5%)   0.0658 ( 67.5%)   0.0746 ( 68.2%)  X86 DAG->DAG Instruction Selection
+   0.0002 (  2.0%)   0.0043 (  4.9%)   0.0045 (  4.6%)   0.0072 (  6.6%)  Inliner for always_inline functions
+   0.0009 (  9.4%)   0.0048 (  5.5%)   0.0058 (  5.9%)   0.0058 (  5.3%)  X86 Assembly Printer
+   0.0007 (  7.2%)   0.0050 (  5.7%)   0.0057 (  5.9%)   0.0057 (  5.2%)  Lower operations on the matrix type
+   0.0005 (  5.2%)   0.0024 (  2.8%)   0.0029 (  3.0%)   0.0029 (  2.7%)  Prologue/Epilogue Insertion & Frame Finalization
+   0.0000 (  0.5%)   0.0012 (  1.4%)   0.0012 (  1.3%)   0.0012 (  1.1%)  Eliminate PHI nodes for register allocation
+   0.0001 (  0.7%)   0.0006 (  0.7%)   0.0007 (  0.7%)   0.0012 (  1.1%)  Remove unreachable blocks from the CFG
+   0.0004 (  3.9%)   0.0008 (  0.9%)   0.0012 (  1.2%)   0.0012 (  1.1%)  Fast Register Allocator
+   0.0002 (  1.7%)   0.0009 (  1.1%)   0.0011 (  1.1%)   0.0011 (  1.0%)  Two-Address instruction pass
+   0.0001 (  0.7%)   0.0008 (  0.9%)   0.0009 (  0.9%)   0.0009 (  0.8%)  Natural Loop Information
+   0.0000 (  0.5%)   0.0006 (  0.7%)   0.0007 (  0.7%)   0.0007 (  0.6%)  Basic Alias Analysis (stateless AA impl)
+   0.0001 (  1.4%)   0.0005 (  0.6%)   0.0006 (  0.6%)   0.0006 (  0.6%)  Insert stack protectors
+   0.0001 (  0.6%)   0.0005 (  0.6%)   0.0006 (  0.6%)   0.0006 (  0.5%)  Post-RA pseudo instruction expansion pass
+   0.0001 (  0.6%)   0.0004 (  0.5%)   0.0005 (  0.5%)   0.0005 (  0.4%)  Expand indirectbr instructions
+   0.0001 (  1.2%)   0.0003 (  0.3%)   0.0004 (  0.4%)   0.0004 (  0.4%)  Dominator Tree Construction
+   0.0001 (  0.7%)   0.0003 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)  CallGraph Construction
+   0.0000 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)   0.0004 (  0.4%)  Local Stack Slot Allocation
+   0.0001 (  0.8%)   0.0003 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  X86 EFLAGS copy lowering
+   0.0001 (  0.5%)   0.0003 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  Expand reduction intrinsics
+   0.0001 (  0.9%)   0.0002 (  0.3%)   0.0003 (  0.3%)   0.0003 (  0.3%)  Exception handling preparation
+   0.0000 (  0.4%)   0.0002 (  0.2%)   0.0003 (  0.3%)   0.0003 (  0.2%)  Insert XRay ops
+   0.0002 (  1.5%)   0.0001 (  0.1%)   0.0002 (  0.2%)   0.0002 (  0.2%)  MachineDominator Tree Construction
+   0.0001 (  1.4%)   0.0000 (  0.0%)   0.0002 (  0.2%)   0.0002 (  0.2%)  Free MachineFunction
+   0.0001 (  1.4%)   0.0000 (  0.0%)   0.0002 (  0.2%)   0.0002 (  0.1%)  Dominator Tree Construction #3
+   0.0001 (  1.1%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Dominator Tree Construction #2
+   0.0001 (  1.0%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Expand Atomic instructions
+   0.0001 (  0.6%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Scalarize Masked Memory Intrinsics
+   0.0001 (  0.7%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Finalize ISel and expand pseudo-instructions
+   0.0001 (  0.5%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Function Alias Analysis Results
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Live DEBUG_VALUE analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Contiguously Lay Out Funclets
+   0.0001 (  0.6%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Basic Alias Analysis (stateless AA impl) #2
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Machine Optimization Remark Emitter #2
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Indirect Branch Tracking
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Discriminate Memory Operands
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Machine Optimization Remark Emitter
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 Retpoline Thunks
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  X86 pseudo instruction expansion pass
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Instrument function entry/exit with calls to e.g. mcount() (pre inlining)
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Bundle Machine CFG Edges
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Instrument function entry/exit with calls to e.g. mcount() (post inlining)
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.1%)  Lazy Branch Probability Analysis
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.0%)  Safe Stack instrumentation pass
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0001 (  0.0%)  X86 PIC Global Base Reg Initialization
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0001 (  0.0%)  X86 Darwin Stack Probe Emitter
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0001 (  0.0%)  Analyze Machine Code For Garbage Collection
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 speculative load hardening
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Insert fentry calls
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 FP Stackifier
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Implement the 'patchable-function' attribute
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.0%)  Lazy Block Frequency Analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Optimization Remark Emitter
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Shadow Stack GC Lowering
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  X86 DynAlloca Expander
+   0.0000 (  0.4%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Lazy Machine Block Frequency Analysis
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Lazy Machine Block Frequency Analysis #2
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  StackMap Liveness Analysis
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  X86 vzeroupper inserter
+   0.0000 (  0.3%)   0.0000 (  0.0%)   0.0001 (  0.1%)   0.0000 (  0.0%)  Lower Garbage Collection Instructions
+   0.0000 (  0.2%)   0.0000 (  0.0%)   0.0000 (  0.1%)   0.0000 (  0.0%)  X86 Insert Cache Prefetches
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Assumption Cache Tracker
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Rewrite Symbols
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Pre-ISel Intrinsic Lowering
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Profile summary info
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Module Information
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Assumption Cache Tracker #2
+   0.0000 (  0.1%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Pre-ISel Intrinsic Lowering
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Force set function attributes
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Branch Probability Analysis
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Pass Configuration
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Create Garbage Collector Module Metadata
-   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information #2
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Profile summary info
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Library Information
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Module Information
    0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Library Information #2
-   0.0089 (100.0%)   0.0021 (100.0%)   0.0110 (100.0%)   0.0110 (100.0%)  Total
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Machine Branch Probability Analysis
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Target Transform Information #2
+   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)   0.0000 (  0.0%)  Create Garbage Collector Module Metadata
+   0.0099 (100.0%)   0.0875 (100.0%)   0.0973 (100.0%)   0.1094 (100.0%)  Total
 

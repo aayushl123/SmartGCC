@@ -128,19 +128,31 @@ public class ToolBarClass {
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(4, file.getName());
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
-                System.out.println("here is click");
+                file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(2, file.getName());
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
-                //file = HomeScene.getFile();
+                // file = HomeScene.getFile();
+                //                if(file==null) {
+                //                    file=createNewFile();
+                //                }
+                //                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 //ConsoleOutput.getOutputArea().setText("");
                 //TermTester.ToolBarActions(3, file.getName());
             });
@@ -174,12 +186,20 @@ public class ToolBarClass {
         if(menuItem.getText().equalsIgnoreCase("Generate Code")){
             menuItem.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(8, file.getName());
             });
         }else if (menuItem.getText().equalsIgnoreCase("Optimize Code")){
             menuItem.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(5, file.getName());
             });
@@ -190,12 +210,20 @@ public class ToolBarClass {
         if(menuItem.getText().equalsIgnoreCase("profile report")){
             menuItem.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(6, file.getName());
             });
         }else if(menuItem.getText().equalsIgnoreCase("stack report")){
             menuItem.setOnAction(event -> {
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(7, file.getName());
             });
