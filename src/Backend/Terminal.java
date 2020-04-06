@@ -3,6 +3,13 @@ import View.ConsoleOutput;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Optional;
+
+import javafx.event.ActionEvent;
+
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
+import javafx.scene.layout.Region;
 
 public class Terminal {
 
@@ -46,6 +53,7 @@ public class Terminal {
     /*
     Generates the command for the appropriate command option.
      */
+    String libFileName="";
     public void commandGen(){
         String os = System.getProperty("os.name");
 
@@ -75,14 +83,42 @@ public class Terminal {
             fireCommand();
             String curPath = System.getProperty("user.dir");
             command = null;
-            String libFileName;
-            int reply = JOptionPane.showConfirmDialog(null, "Have you used a personal " +
-                    " library in this program?"
-                    , "Add own library", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                libFileName = JOptionPane.showInputDialog("Enter the name of your \"library.cpp\" file. \n" +
-                        "Note: The library file should be in the same folder with the executing program File.");
 
+          /*  int reply = JOptionPane.showConfirmDialog(null, "Have you used a personal " +
+                    " library in this program?"
+                    , "Add own library", JOptionPane.YES_NO_OPTION);*/
+
+            ButtonType Yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType No = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Have you used a personal " +
+                    " library in this program?"
+                  , Yes,
+                    No);
+
+
+
+            alert.setTitle("Date format warning");
+            Optional<ButtonType> result = alert.showAndWait();
+
+              if (result.orElse(No) == Yes) {
+
+                  TextInputDialog dialog = new TextInputDialog("");
+                  // create a event handler
+                  dialog.setTitle("Enter the name of your \"library.cpp\" file. \n" +
+                          "Note: The library file should be in the same folder with the executing program File.");
+                  dialog.setHeaderText("File Name:");
+                  //dialog.setWidth(700);
+                  dialog.getDialogPane().setMinWidth(800);
+                  dialog.showAndWait();
+
+
+                  // set the text of the label
+                  libFileName=dialog.getEditor().getText();
+
+
+                 // libFileName = JOptionPane.showInputDialog();
+                  System.out.println("here is the name of the file "+libFileName);
                 command = "cd src; cd Resources; rm -r LibDirectory; mkdir LibDirectory;" +
                         " g++ -c "+libFileName+";" + " mv "+libFileName.substring(0,libFileName.indexOf("."))+".o "
                         + curPath + "/src/Resources/LibDirectory;" +
@@ -99,6 +135,7 @@ public class Terminal {
                 command = command.replace(";"," &");
                 command = command.replace("rm -r","rmdir /q /s");
             }
+
             output.setLength(0);
             outputErr.setLength(0);
             fireCommand();

@@ -78,6 +78,7 @@ public class ToolBarClass {
 
             setToolBarButtonActionNovice(compileButton);
             setToolBarButtonActionNovice(executeButton);
+            setToolBarButtonActionNovice(linkButton);
             setToolBarButtonActionTypical(codeGenerationButton);
             setToolBarButtonActionTypical(codeOptimizationButton);
             setToolBarActionsDeveloper(profileReportItem);
@@ -120,6 +121,19 @@ public class ToolBarClass {
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(4, file.getName());
+            });
+        } else if(button.getText().equals("Linking")){
+            button.setOnAction(event -> {
+                System.out.println("here is click");
+                file = HomeScene.getFile();
+                ConsoleOutput.getOutputArea().setText("");
+                TermTester.ToolBarActions(2, file.getName());
+            });
+        } else if(button.getText().equals("Debug")){
+            button.setOnAction(event -> {
+                //file = HomeScene.getFile();
+                //ConsoleOutput.getOutputArea().setText("");
+                //TermTester.ToolBarActions(3, file.getName());
             });
         }
     }
