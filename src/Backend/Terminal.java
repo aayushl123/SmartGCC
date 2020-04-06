@@ -270,7 +270,12 @@ public class Terminal {
             }
             int exitVal = process.waitFor();
             if (exitVal == 0) {
-                //display("Success!");
+//                display("Success!");
+                if(option == 8){
+                    output.append("Code generated with exceptions");
+                }else if(option == 5){
+                    output.append("Code optimised");
+                }
                 display(output.toString());
             } else {
                 String lineErr;
@@ -373,6 +378,7 @@ public class Terminal {
             while((line = in.readLine()) != null)
             {
                 System.out.println(line);
+                ConsoleOutput.getOutputArea().appendText(line+"\n");
             }
             in.close();
             System.out.println("\n");
