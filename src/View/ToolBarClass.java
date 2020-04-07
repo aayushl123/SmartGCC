@@ -137,7 +137,11 @@ public class ToolBarClass {
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
-                System.out.println("here is click");
+                file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -149,7 +153,7 @@ public class ToolBarClass {
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
-                //file = HomeScene.getFile();
+
                 // file = HomeScene.getFile();
                 //                if(file==null) {
                 //                    file=createNewFile();

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 clang: error: unknown argument: '-fprofile-report'
+=======
+clang: error: unknown argument: '-ftemp-report'
+>>>>>>> saving_live_changes
