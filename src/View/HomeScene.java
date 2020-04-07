@@ -34,6 +34,8 @@ public class HomeScene {
 
     public static void setHomeScene(){
         homeTextEditor = new HomeTextEditor();
+        toolBarClass = new ToolBarClass(homeTextEditor);
+        toolBar = toolBarClass.getToolBar();
         homeTextEditor.setTextEditor();
         initializeConsoleOutput();
         toolBarClass = new ToolBarClass(homeTextEditor);

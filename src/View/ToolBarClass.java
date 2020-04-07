@@ -147,12 +147,17 @@ public class ToolBarClass {
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
+                if(file==null) {
+                    file=createNewFile();
+                }
+                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+                file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(2, file.getName());
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
-                //file = HomeScene.getFile();
+
                 // file = HomeScene.getFile();
                 //                if(file==null) {
                 //                    file=createNewFile();
