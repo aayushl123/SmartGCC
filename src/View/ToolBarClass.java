@@ -114,6 +114,7 @@ public class ToolBarClass {
     public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -127,6 +128,7 @@ public class ToolBarClass {
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -137,6 +139,7 @@ public class ToolBarClass {
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 System.out.println("here is click");
                 file = HomeScene.getFile();
                 if(file==null) {
@@ -187,6 +190,7 @@ public class ToolBarClass {
     public static void setToolBarButtonActionTypical(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("Generate Code")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -197,6 +201,7 @@ public class ToolBarClass {
             });
         }else if (menuItem.getText().equalsIgnoreCase("Optimize Code")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -211,6 +216,7 @@ public class ToolBarClass {
     public static void setToolBarActionsDeveloper(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("profile report")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -221,6 +227,7 @@ public class ToolBarClass {
             });
         }else if(menuItem.getText().equalsIgnoreCase("stack report")){
             menuItem.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(menuItem.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
