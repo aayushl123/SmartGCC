@@ -6,11 +6,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.Optional;
 
-import javafx.event.ActionEvent;
-
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.layout.Region;
 
 public class Terminal {
 
@@ -131,7 +127,7 @@ public class Terminal {
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".a -o tempOut";
             }
             else{
-                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall "+ " -o "+ "tempOut";
+                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+" -Wall "+ " -o "+ "tempOut";
 
             }
             if(os.startsWith("Win")){
@@ -168,7 +164,7 @@ public class Terminal {
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".a -o tempOut";
             }
             else{
-                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall -g"+ " -o "+ "tempOut";
+                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName +" -Wall -g"+ " -o "+ "tempOut";
 
             }
             if(os.startsWith("Win")){
@@ -278,7 +274,7 @@ public class Terminal {
             builder = new ProcessBuilder("cmd.exe", "/c", command);
         }
         else{
-            builder = new ProcessBuilder("bash", "-c", command);
+            builder = new ProcessBuilder("sh", "-c", command);
         }
         try {
 
@@ -302,16 +298,10 @@ public class Terminal {
                     writer.flush();
                     writer.close();
                 }
-                else if(output.toString().contains("Copyright (C) 2020 Free Software Foundation, Inc.") ||
-                        output.toString().contains("This GDB was configured")){
-                    if(line.contains("Reading symbols from /")) {
-                        System.out.println(line);
-                        gdbSession(reader);
-                    }
-                    else{
-                        System.out.println(line);
-                        output.append(line).append("\n");
-                    }
+                else if(output.toString().contains("Current executable set to")){
+                    System.out.println(line);
+                    System.out.print("(lldb) ");
+                    lldbSession(reader);
                 }
                 else {
                     output.append(line).append("\n");
@@ -324,6 +314,9 @@ public class Terminal {
                     output.append("Code generated with exceptions");
                 }else if(option == 5){
                     output.append("Code optimised");
+                }
+                else if(option ==2){
+                    output.append("The libraries have been linked");
                 }
                 display(output.toString());
             } else {
@@ -375,7 +368,7 @@ public class Terminal {
      */
     public void debug(){
         //GDB MI is a external interface for managing the interaction without inter process communication
-        command = "cd src; cd Resources; set startup-with-shell off; gdb --interpreter=mi tempOut";
+        command = "cd src; cd Resources; set startup-with-shell disable; lldb --interpreter=mi tempOut";
         fireCommand();
 
     }
@@ -383,34 +376,44 @@ public class Terminal {
     /*
     Create a session for the entire debug execution
      */
-    public void gdbSession(BufferedReader reader) throws IOException {
-        display("You have initiated your program in a GDB debug mode\n");
+    public void lldbSession(BufferedReader reader) throws IOException {
+        display("You have initiated your program in a LLDB debug mode\n");
         String head = "Enter your choice in the popup window\n"+
                 "1. Run the program in debug mode\n" +
-                "2. Add break points\n" +
-                "3. Get existing breakpoints\n" +
-                "4. Delete existing breakpoints\n" +
-                "5. Go to next breakpoint\n" +
-                "6. Add breakpoint at the beginning of a function\n"+
-                "7. Quit\n";
+                "2. Show program with line number\n" +
+                "3. Add break points\n" +
+                "4. Get existing breakpoints\n" +
+                "5. Delete existing breakpoints\n" +
+                "6. Go to next breakpoint\n" +
+                "7. Add breakpoint at the beginning of a function\n"+
+                "8. Quit\n";
         display(head);
         String selOption = takeInputGDB();
-        while(!selOption.equals("7")){
+        while(!selOption.equals("8")){
             if(selOption.equals("1")){
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(process.getOutputStream()));
+                PrintWriter writer = new PrintWriter(new BufferedWriter
+                        (new OutputStreamWriter(process.getOutputStream())),true);
                 String value = "run\n";
                 writer.write(value, 0, value.length());
-                writer.newLine();
-                writer.close();
+                writer.println();
                 String line;
                 while ((line = reader.readLine()) != null) {
                     display(line);
+                    if(line.contains("Input")){
+                        String val = JOptionPane.showInputDialog(line);
+                        writer.write(val, 0, val.length());
+                        writer.println();
+                    }
+                    if(line.contains("Process") && line.contains("exited")){
+                        break;
+                    }
                 }
-
             }
             display(head);
             selOption = takeInputGDB();
+            if(selOption.equals("")){
+
+            }
         }
 
     }
