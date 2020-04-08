@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import java.io.File;
@@ -47,14 +49,31 @@ public class HomeScene {
 
 
         homeScene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+
+
+            final KeyCombination keyCombSave = new KeyCodeCombination(KeyCode.S,KeyCombination.CONTROL_DOWN);
+
             public void handle(KeyEvent ke) {
-                if (ke.getCode() == KeyCode.F12) {
-                    System.out.println("Key Pressed: " + ke.getCode());
-                    ke.consume(); // <-- stops passing the event to next node
+                if (ke.getCode() == KeyCode.F1) {
+                    ToolBarClass.onOptionSelected(1);
+                    ke.consume();
+                } else  if (ke.getCode() == KeyCode.F2) {
+                    ToolBarClass.onOptionSelected(2);
+                    ke.consume();
+                } else  if (ke.getCode() == KeyCode.F3) {
+                   // ToolBarClass.onOptionSelected(3);
+                    ke.consume();
+                } else  if (ke.getCode() == KeyCode.F4) {
+                    ToolBarClass.onOptionSelected(4);
+                    ke.consume();
                 }
-                System.out.println(ke.getCode());
+
+                if (keyCombSave.match(ke)) {
+                    ToolBarClass.checkIfFileExists();
+                }
             }
         });
+
     }
 
 

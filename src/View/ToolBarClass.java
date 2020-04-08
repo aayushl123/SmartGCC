@@ -114,32 +114,37 @@ public class ToolBarClass {
     public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(button.getText());
+                onOptionSelected(  1);
+
+               /* FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
-                //System.out.println(homeTextEditor.getText());
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
-                //file.getName();
-                System.out.printf(""+file.getName());
+
+*/
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
                 FrequentlyUsedWindow.setActionTiming(button.getText());
+                onOptionSelected(4);
+                /*FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(4, file.getName());
+                TermTester.ToolBarActions(4, file.getName());*/
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
                 FrequentlyUsedWindow.setActionTiming(button.getText());
+                onOptionSelected(2);
+               /* FrequentlyUsedWindow.setActionTiming(button.getText());
                 System.out.println("here is click");
                 file = HomeScene.getFile();
                 if(file==null) {
@@ -153,20 +158,28 @@ public class ToolBarClass {
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(2, file.getName());
+                TermTester.ToolBarActions(2, file.getName());*/
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
+               // FrequentlyUsedWindow.setActionTiming(button.getText());
+                //onOptionSelected(button,3);
 
-                // file = HomeScene.getFile();
-                //                if(file==null) {
-                //                    file=createNewFile();
-                //                }
-                //                MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
-                //ConsoleOutput.getOutputArea().setText("");
-                //TermTester.ToolBarActions(3, file.getName());
             });
         }
+    }
+
+    public static void checkIfFileExists(){
+        file = HomeScene.getFile();
+        if(file==null) {
+            file=createNewFile();
+        }
+        MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
+    }
+    public static void onOptionSelected( int option){
+        checkIfFileExists();
+        ConsoleOutput.getOutputArea().setText("");
+        TermTester.ToolBarActions(option, file.getName());
     }
 
     // creates a new file in resources if user writes in editor
