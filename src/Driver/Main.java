@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 
+/**
+ *Main Class for the project
+ */
 public class Main extends Application {
 
     private static Stage stage;

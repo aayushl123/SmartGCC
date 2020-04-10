@@ -7,14 +7,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
+/**
+ * Class to show the console output.
+ * @author sagarbhatia, karansharma
+ */
 public class ConsoleOutput  {
     private static TextArea outputArea;
     private ScrollPane scrollPane;
     private VBox vBox,nestedVBox;
     private Label consoleOutputLabel;
 
-
+    /**
+     * Class to set the properties of the output console.
+     * @author karansharma
+     */
     public void setTextEditor(){
         outputArea = new TextArea();
         scrollPane = new ScrollPane();
@@ -44,14 +50,26 @@ public class ConsoleOutput  {
 
     }
 
+    /**
+     * Method to get the text of the console output.
+     * @return text of the console output
+     */
     public String getText(){
         return outputArea.getText();
     }
 
+    /**
+     * Method to get the text area of the console output
+     * @return text area of console
+     */
     public static TextArea getOutputArea(){
         return outputArea;
     }
 
+    /**
+     * Method to get the console output object.
+     * @return console output object
+     */
     public VBox getConsoleOutput(){
         return vBox;
     }

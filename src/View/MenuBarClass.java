@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Class for the menu bar on the home screen.
+ * @author gurvindersingh, haoma
+ */
 public class MenuBarClass {
 
     private Menu fileMenu;
@@ -22,6 +26,11 @@ public class MenuBarClass {
     private MenuBar menuBar;
     private HomeTextEditor homeTextEditor;
 
+    /**
+     * MenuBarClass constructor that will receive the home text
+     * editor object.
+     * @param homeTextEditor object of HomeTextEditor
+     */
     MenuBarClass(HomeTextEditor homeTextEditor){
         this.menuBar = new MenuBar();
         this.homeTextEditor = homeTextEditor;
@@ -29,10 +38,17 @@ public class MenuBarClass {
         addMenus();
     }
 
+    /**
+     * Method to return the menubar.
+     * @return menubar object
+     */
     public MenuBar getMenuBar() {
         return menuBar;
     }
 
+    /**
+     * Method to add menus in the menu bar.
+     */
     public void addMenus(){
         menuBar.getMenus().add(fileMenu);
         menuBar.getMenus().add(editMenu);
@@ -41,6 +57,9 @@ public class MenuBarClass {
         menuBar.getMenus().add(allOptionsMenu);
     }
 
+    /**
+     * Method to set the different menu items.
+     */
     public void setMenus(){
         fileMenu = new Menu("File");
         editMenu = new Menu("Edit");
@@ -96,6 +115,10 @@ public class MenuBarClass {
         setSwitchUserActions(switchMenuItem3);
     }
 
+    /**
+     * Method to set the actions on the items of file menu.
+     * @param fileMenuItem file menu item object
+     */
     public void setFileMenuActions(MenuItem fileMenuItem){
         String selectedOption = fileMenuItem.getText();
         if(selectedOption.equals("Open") || selectedOption.equals("Save") ||selectedOption.equals("Save as")) {
@@ -126,6 +149,11 @@ public class MenuBarClass {
         }
     }
 
+    /**
+     * Method to save text to a file
+     * @param content content in the text area
+     * @param originalFile original file object
+     */
     public static void saveAsTextToFile(String content, File originalFile) {
         try {
             PrintWriter writer;
@@ -162,7 +190,10 @@ public class MenuBarClass {
     }
 
 
-
+    /**
+     * Method to read from a file to the text area.
+     * @param originalFile object for the original file
+     */
     public void readTextFromFile(File originalFile) {
         try{
             Scanner s = new Scanner(originalFile);
@@ -185,7 +216,10 @@ public class MenuBarClass {
         }
     }
 
-
+    /**
+     * Method to set the actions for the switch user menu.
+     * @param switchUserMenuItem Switch user menu object
+     */
     public void setSwitchUserActions(MenuItem switchUserMenuItem) {
         switchUserMenuItem.setOnAction(event -> {
             String userType = UserClass.getUserType();

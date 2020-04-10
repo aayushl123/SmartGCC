@@ -15,10 +15,16 @@ import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 
+/**
+ * Class for the Welcome screen of the interface.
+ */
 public class WelcomeScene {
     private static Scene welcomeScene;
     private static ImageView imageView;
 
+    /**
+     * Method to set the properties of the welcome screen.
+     */
     public static void setWelcomeScene(){
         Label playerLabel = new Label("Please select the type of user and press OK:");
         playerLabel.setFont(new Font("Arial", 24));
@@ -56,10 +62,18 @@ public class WelcomeScene {
         welcomeScene = new Scene(vbox, 1264, 775);
     }
 
+    /**
+     * Method to get the welcome screen object.
+     * @return welcomeScene object of WelcomeScene
+     */
     public static Scene getWelcomeScene(){
         return welcomeScene;
     }
 
+    /**
+     * Method to return the image object of the welcome screen.
+     * @return imageView object of ImageView
+     */
     public static ImageView setImageView(){
         try {
             Image image = new Image(new FileInputStream("src/Resources/WelcomeScreenImage.png"));

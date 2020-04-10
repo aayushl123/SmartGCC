@@ -15,6 +15,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import java.io.File;
 
+/**
+ * Class to display the home screen to the user.
+ * @author sagarbhatia, karansharma
+ */
 public class HomeScene {
     private static Scene homeScene;
     private static MenuBarClass menuBarClass;
@@ -25,15 +29,27 @@ public class HomeScene {
     private static ConsoleOutput consoleOutput;
     private static File localFile,originalFile;
 
+    /**
+     * Method to get the file object
+     * @return originalFile object of the original file
+     */
     public static File getFile() {
         return originalFile;
     }
 
+    /**
+     * Method to set the local file object and original file object
+     * @param localFile name of the file in resources
+     * @param originalFile name of the file in the original location.
+     */
     public void setFile(File localFile,File originalFile) {
         HomeScene.localFile = localFile;
         HomeScene.originalFile=originalFile;
     }
 
+    /**
+     * Method to intialize the object in the home scene.
+     */
     public static void setHomeScene(){
         homeTextEditor = new HomeTextEditor();
         toolBarClass = new ToolBarClass(homeTextEditor);
@@ -76,12 +92,18 @@ public class HomeScene {
 
     }
 
-
+    /**
+     * Method to initialize the console output window.
+     */
     private static void initializeConsoleOutput() {
         consoleOutput = new ConsoleOutput();
         consoleOutput.setTextEditor();
     }
 
+    /**
+     * Method to get the object of the home screen.
+     * @return homeScene object
+     */
     public static Scene getHomeScene(){
         return homeScene;
     }

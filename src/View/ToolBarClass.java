@@ -13,6 +13,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Class for the toolbar of SmartGCC.
+ * @author sagarbhatia, karansharma
+ */
 public class ToolBarClass {
 
     private static ToolBar toolBar;
@@ -30,6 +34,10 @@ public class ToolBarClass {
     private static File file;
     private static HomeTextEditor homeTextEditor;
 
+    /**
+     * Tool bar class constructor.
+     * @param homeTextEditor object of text editor
+     */
     public ToolBarClass(HomeTextEditor homeTextEditor){
         toolBar = new ToolBar();
         initializeButtons();
@@ -43,6 +51,9 @@ public class ToolBarClass {
         this.homeTextEditor = homeTextEditor;
     }
 
+    /**
+     * Method to intialize the buttons on the toolbar.
+     */
     public static void initializeButtons(){
         try {
             FileInputStream input = new FileInputStream("src/Resources/CompileButtonIcon.png");
@@ -92,25 +103,39 @@ public class ToolBarClass {
         }
     }
 
+    /**
+     * Method to add the buttons of novice users.
+     */
     public static void setToolBarNovice(){
         toolBar.getItems().add(compileButton);
         toolBar.getItems().add(linkButton);
         toolBar.getItems().add(debugButton);
         toolBar.getItems().add(executeButton);
     }
-
+    /**
+     * Method to add the buttons of typical users.
+     */
     public static void setToolBarTypical(){
         toolBar.getItems().add(typicalOptions);
     }
-
+    /**
+     * Method to add the buttons of expert users.
+     */
     public static void setToolBarExpert(){
         toolBar.getItems().add(developerOptionsButton);
     }
-
+    /**
+     * Method to get the toolbar.
+     * @return toolBar object of Toolbar
+     */
     public static ToolBar getToolBar() {
         return toolBar;
     }
 
+    /**
+     *Method to set the actions for buttons of novice users.
+     * @param button novice buttons
+     */
     public static void setToolBarButtonActionNovice(Button button){
         if(button.getText().equals("Compile")) {
             button.setOnAction(event -> {
@@ -169,6 +194,9 @@ public class ToolBarClass {
         }
     }
 
+    /**
+     *Method to check if the file exists
+     */
     public static void checkIfFileExists(){
         file = HomeScene.getFile();
         if(file==null) {
@@ -176,13 +204,21 @@ public class ToolBarClass {
         }
         MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
     }
+
+    /**
+     * Method to set the option selected for backend.
+     * @param option option selected
+     */
     public static void onOptionSelected( int option){
         checkIfFileExists();
         ConsoleOutput.getOutputArea().setText("");
         TermTester.ToolBarActions(option, file.getName());
     }
 
-    // creates a new file in resources if user writes in editor
+    /**
+     * creates a new file in resources if user writes in editor
+     * @return localFile object of local file
+     */
     public static File createNewFile()  {
 
         File localFile = new File("src/Resources/temp"+System.currentTimeMillis()+".cpp" );
@@ -205,6 +241,10 @@ public class ToolBarClass {
         return localFile;
     }
 
+    /**
+     * Method to set the actions for typical user's buttons.
+     * @param menuItem menu item in typical user options
+     */
     public static void setToolBarButtonActionTypical(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("Generate Code")){
             menuItem.setOnAction(event -> {
@@ -231,6 +271,10 @@ public class ToolBarClass {
         }
     }
 
+    /**
+     * Method to set the actions for expert user's buttons.
+     * @param menuItem menu item in expert user options
+     */
     public static void setToolBarActionsDeveloper(MenuItem menuItem){
         if(menuItem.getText().equalsIgnoreCase("profile report")){
             menuItem.setOnAction(event -> {
@@ -258,11 +302,17 @@ public class ToolBarClass {
 
     }
 
+    /**
+     * Method to remove the typical user's buttons.
+     */
     public static void removeToolBarTypical(){
         toolBar.getItems().remove(codeGenerationButton);
         toolBar.getItems().remove(codeOptimizationButton);
     }
 
+    /**
+     * Method to remove the expert user's buttons.
+     */
     public static void removeToolBarExpert(){
         toolBar.getItems().remove(developerOptionsButton);
     }

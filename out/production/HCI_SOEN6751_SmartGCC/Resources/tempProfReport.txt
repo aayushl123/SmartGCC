@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-clang: error: unknown argument: '-fprofile-report'
-=======
-clang: error: unknown argument: '-ftemp-report'
->>>>>>> saving_live_changes
+clang: error: unknown argument '-ftime', did you mean '-time'?
+clang: error: unknown argument: '-report'

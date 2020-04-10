@@ -3,8 +3,15 @@ package Backend;
 
 import java.util.HashMap;
 
+/**
+ * Driver class to handle the events from the from end.
+ * @author Aayush, Rohit
+ */
 public class TermTester {
-
+    /**
+     * Main method to check functions at the backend
+     * @param args arguments
+     */
     public static void main(String[] args) {
         HashMap<Integer, String> cmdInfo = new HashMap<Integer, String>();
         cmdInfo.put(1, "COMPILE");
@@ -22,9 +29,9 @@ public class TermTester {
 
     /**
      * method created to handle the call from front end
-     * @param option
-     * @param fileName
-     * @author sagar
+     * @param option chosen by the user
+     * @param fileName file user is working upon
+     * @author Aayush, Rohit
      */
     public static void ToolBarActions(int option, String fileName) {
         HashMap<Integer, String> cmdInfo = new HashMap<Integer, String>();

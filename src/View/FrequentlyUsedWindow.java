@@ -9,6 +9,10 @@ import java.io.File;
 import java.time.Instant;
 import java.util.*;
 
+/**
+ * Class for the Frequently used box pane
+ * @author sagarbhatia, karansharma
+ */
 public class FrequentlyUsedWindow {
     private static VBox frequentlyUsedBox;
     private static HashMap<String, Long> actionTimeMap = new HashMap<>();
@@ -16,7 +20,9 @@ public class FrequentlyUsedWindow {
     private static boolean appStarted = true;
     private static File file;
 
-
+    /**
+     * Setter to set the properties of the frequently used box
+     */
     public void setFrequentlyUsedBox() {
         Label boxTitle = new Label("Last used actions");
         frequentlyUsedBox = new VBox(boxTitle);
@@ -24,10 +30,18 @@ public class FrequentlyUsedWindow {
         frequentlyUsedBox.setPrefHeight(450);
     }
 
+    /**
+     * Method to get the frequently used box
+     * @return frequentlyUsedBox object of the FrequentlyUsedBox
+     */
     public VBox getFrequentlyUsedBox(){
         return frequentlyUsedBox;
     }
 
+    /**
+     * Method to get the set timings of actions chosen by the user.
+     * @param action chosen by the user
+     */
     public static void setActionTiming(String action){
         long now = Instant.now().toEpochMilli();
         actionTimeMap.put(action, now);
@@ -50,6 +64,9 @@ public class FrequentlyUsedWindow {
         appStarted = false;
     }
 
+    /**
+     * Method to set the actions on the frequently used buttons.
+     */
     public static void setButtonActions(){
         for(int i = 0; i < actionButtons.length; i++){
             Button button = actionButtons[i];
