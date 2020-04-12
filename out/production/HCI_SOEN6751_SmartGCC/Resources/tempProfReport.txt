@@ -1,2 +1,18 @@
-clang: error: unknown argument '-ftime', did you mean '-time'?
-clang: error: unknown argument: '-report'
+===-------------------------------------------------------------------------===
+                         Miscellaneous Ungrouped Timers
+===-------------------------------------------------------------------------===
+
+   ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
+   0.0148 ( 49.8%)   0.0839 ( 79.0%)   0.0987 ( 72.6%)   0.3275 ( 79.6%)  Code Generation Time
+   0.0149 ( 50.2%)   0.0223 ( 21.0%)   0.0372 ( 27.4%)   0.0838 ( 20.4%)  LLVM IR Generation Time
+   0.0297 (100.0%)   0.1062 (100.0%)   0.1359 (100.0%)   0.4113 (100.0%)  Total
+
+===-------------------------------------------------------------------------===
+                          Clang front-end time report
+===-------------------------------------------------------------------------===
+  Total Execution Time: 0.8309 seconds (3.5361 wall clock)
+
+   ---User Time---   --System Time--   --User+System--   ---Wall Time---  --- Name ---
+   0.5123 (100.0%)   0.3186 (100.0%)   0.8309 (100.0%)   3.5361 (100.0%)  Clang front-end timer
+   0.5123 (100.0%)   0.3186 (100.0%)   0.8309 (100.0%)   3.5361 (100.0%)  Total
+

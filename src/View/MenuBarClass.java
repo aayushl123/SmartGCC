@@ -59,6 +59,12 @@ public class MenuBarClass {
 
     /**
      * Method to set the different menu items.
+     * Process:
+     * <ul>
+     *     <li>Set the first level menu items like 'File','Edit','Help','SwitchUser','AllOption'</li>
+     *     <li>Set the second level menu items, e.g.'New','Open','Save','Save as'in'File'Menu</li>
+     *     <li>Get and Set methods</li>
+     * </ul>
      */
     public void setMenus(){
         fileMenu = new Menu("File");
@@ -117,6 +123,12 @@ public class MenuBarClass {
 
     /**
      * Method to set the actions on the items of file menu.
+     * Process:
+     * <ul>
+     *     <li>Use conditional statement to check the requests:'Open','Save'or'Save as'</li>
+     *     <li>Use conditional statement to check if the 'originalFile' is null</li>
+     *     <li>Call methods from 'fileChooser'to achieve different requests</li>
+     * </ul>
      * @param fileMenuItem file menu item object
      */
     public void setFileMenuActions(MenuItem fileMenuItem){
@@ -218,6 +230,14 @@ public class MenuBarClass {
 
     /**
      * Method to set the actions for the switch user menu.
+     * Purpose: allow the users to switch their type of user
+     * Process:
+     * <ul>
+     *     <li>Set up two String variables 'userType'and'switchUser'</li>
+     *     <li>Running the conditional statements to make the changes</li>
+     *     <li>Remove old user type 'ToolBarClass.removeToolBar' and set new user type 'ToolBarClass.setToolBar'</li>
+     * </ul>
+     *
      * @param switchUserMenuItem Switch user menu object
      */
     public void setSwitchUserActions(MenuItem switchUserMenuItem) {
