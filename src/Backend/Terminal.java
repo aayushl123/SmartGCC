@@ -1,4 +1,5 @@
 package Backend;
+import Controller.DebugController;
 import View.ConsoleOutput;
 import javafx.scene.control.TextInputDialog;
 
@@ -408,44 +409,12 @@ public class Terminal {
      * @throws IOException for files
      */
     public void lldbSession(BufferedReader reader) throws IOException {
-        display("You have initiated your program in a LLDB debug mode\n");
-        String head = "Enter your choice in the popup window\n"+
-                "1. Run the program in debug mode\n" +
-                "2. Show program with line number\n" +
-                "3. Add break points\n" +
-                "4. Get existing breakpoints\n" +
-                "5. Delete existing breakpoints\n" +
-                "6. Go to next breakpoint\n" +
-                "7. Add breakpoint at the beginning of a function\n"+
-                "8. Quit\n";
-        display(head);
-        String selOption = takeInputGDB();
-        while(!selOption.equals("8")){
-            if(selOption.equals("1")){
-                PrintWriter writer = new PrintWriter(new BufferedWriter
-                        (new OutputStreamWriter(process.getOutputStream())),true);
-                String value = "run\n";
-                writer.write(value, 0, value.length());
-                writer.println();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    display(line);
-                    if(line.contains("Input")){
-                        String val = JOptionPane.showInputDialog(line);
-                        writer.write(val, 0, val.length());
-                        writer.println();
-                    }
-                    if(line.contains("Process") && line.contains("exited")){
-                        break;
-                    }
-                }
-            }
-            display(head);
-            selOption = takeInputGDB();
-            if(selOption.equals("")){
+        String path = System.getProperty("user.dir");
+        path = path + "/src/Resources/"+fileName;
 
-            }
-        }
+        display("You have initiated your program in a LLDB debug mode\n");
+        DebugController debugControl = new DebugController(path, reader, process);
+
 
     }
 
