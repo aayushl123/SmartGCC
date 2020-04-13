@@ -1,6 +1,10 @@
 package Backend;
+import Controller.DebugController;
+
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.util.concurrent.Executors;
 
 public class Terminal {
 
@@ -10,7 +14,6 @@ public class Terminal {
     int option;
     String fileName;
     Process process;
-
     public Terminal() {
 
     }
@@ -76,7 +79,7 @@ public class Terminal {
             command = null;
             String libFileName;
             int reply = JOptionPane.showConfirmDialog(null, "Have you used a personal " +
-                    " library in this program?"
+                            " library in this program?"
                     , "Add own library", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 libFileName = JOptionPane.showInputDialog("Enter the name of your \"library.cpp\" file. \n" +
@@ -91,7 +94,7 @@ public class Terminal {
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".a -o tempOut";
             }
             else{
-                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall "+ " -o "+ "tempOut";
+                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+" -Wall -g"+ " -o "+ "tempOut";
 
             }
             if(os.startsWith("Win")){
@@ -127,7 +130,7 @@ public class Terminal {
                         ""+libFileName.substring(0,libFileName.indexOf("."))+".a -o tempOut";
             }
             else{
-                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+";" +" -Wall -g"+ " -o "+ "tempOut";
+                command = "cd src; cd Resources; g++ " + curPath + "/src/Resources/"+fileName+" -Wall -g"+ " -o "+ "tempOut";
 
             }
             if(os.startsWith("Win")){
@@ -233,11 +236,12 @@ public class Terminal {
             builder = new ProcessBuilder("cmd.exe", "/c", command);
         }
         else{
-            builder = new ProcessBuilder("bash", "-c", command);
+            builder = new ProcessBuilder("sh", "-c", command);
         }
         try {
 
             process = builder.start();
+
 
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
@@ -252,16 +256,9 @@ public class Terminal {
                     writer.newLine();
                     writer.close();
                 }
-                else if(output.toString().contains("(lldb) target create")){
-                    if(line.contains("Current executable set to")) {
-                        System.out.println(line);
-                        System.out.print("(lldb) ");
-                        gdbSession(reader);
-                    }
-                    else{
-                        System.out.println(line);
-                        output.append(line).append("\n");
-                    }
+                else if(line.contains("Current executable set to")){
+                    System.out.println(line);
+                    gdbSession(reader);
                 }
                 else {
                     output.append(line).append("\n");
@@ -290,7 +287,7 @@ public class Terminal {
             e.printStackTrace();
         }
         if(!outputErr.toString().isEmpty())
-        errorFormatDisplay();                                                   //display Error output function
+            errorFormatDisplay();                                                   //display Error output function
     }
 
     /*
@@ -319,8 +316,7 @@ public class Terminal {
      */
     public void debug(){
         //GDB MI is a external interface for managing the interaction without inter process communication
-        command = "cd src; cd Resources; set startup-with-shell off; lldb" +
-                " --interpreter=mi tempOut";
+        command = "cd src; cd Resources; set startup-with-shell disable; lldb --i=mi tempOut";
         fireCommand();
 
     }
@@ -328,40 +324,13 @@ public class Terminal {
     /*
     Create a session for the entire debug execution
      */
-    public void gdbSession(BufferedReader reader) throws IOException {
-        display("You have initiated your program in a GDB debug mode\n");
-        String head = "Enter your choice in the popup window\n"+
-                "1. Run the program in debug mode\n" +
-                "2. Add break points\n" +
-                "3. Get existing breakpoints\n" +
-                "4. Delete existing breakpoints\n" +
-                "5. Go to next breakpoint\n" +
-                "6. Add breakpoint at the beginning of a function\n"+
-                "7. Quit\n" +"(lldb) ";
-        display(head);
-        String selOption = takeInputGDB();
-        while(!selOption.equals("7")){
-            if(selOption.equals("1")){
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(process.getOutputStream()));
-                String value = "run\n";
-                writer.write(value, 0, value.length());
-                writer.newLine();
-                writer.close();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    display(line);
-                }
+    public void gdbSession(BufferedReader reader) throws IOException, InterruptedException {
+        String path = System.getProperty("user.dir");
+        path = path + "/src/Resources/"+fileName;
 
-            }
-            display(head);
-            selOption = takeInputGDB();
-        }
+        display("You have initiated your program in a LLDB debug mode\n");
+        DebugController debugControl = new DebugController(path, reader, process);
 
-    }
-
-    public String takeInputGDB(){
-        return JOptionPane.showInputDialog("Choose from the options provided in the console");
     }
 
 
@@ -384,3 +353,4 @@ public class Terminal {
         }
     }
 }
+

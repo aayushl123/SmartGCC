@@ -11,8 +11,7 @@ int takeVal(){
 }
 
 int main() {
-    std::cout << "main() says Hello World!\n"<<
-    "The encryption standard is " << ENCRPTION_STANDARD<<"\n";
+    std::cout << "main() says Hello World!\n"<<"The encryption standard is " << ENCRPTION_STANDARD<<"\n";
     int val = takeVal();
     std::cout<<"The value to be encoded is "<<val<<"\n";
     double encVal = encrypt(val);
