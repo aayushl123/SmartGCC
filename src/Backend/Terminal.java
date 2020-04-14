@@ -331,6 +331,7 @@ public class Terminal {
         display("You have initiated your program in a LLDB debug mode\n");
         DebugController debugControl = new DebugController(path, reader, process);
 
+
     }
 
 

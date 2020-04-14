@@ -64,4 +64,12 @@ public class Debugger {
             return " The checkpoint "+ lineNo + " is already marked ";
         }
     }
+    public int delCheckpoint(int lineNo){
+        if(breakPoints.contains(lineNo)){
+            return breakPoints.indexOf(lineNo)+1;
+        }
+        else{
+            return 0;
+        }
+    }
 }

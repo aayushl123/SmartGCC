@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DebugController extends Thread implements ActionListener {
-    Debugger model;
     DebugView view;
     Process process;
     String path;
@@ -35,7 +34,6 @@ public class DebugController extends Thread implements ActionListener {
                 , "Begin Debug?", JOptionPane.YES_NO_OPTION);
         if(reply == JOptionPane.YES_OPTION){
             view =  new DebugView(path, process);
-            model = view.getDataModel();
             temp = new JFrame("Initializer");
             temp.setLayout(new GridLayout(2,1));
             temp.add(view.getJsp());
@@ -60,7 +58,6 @@ public class DebugController extends Thread implements ActionListener {
             fileHolderLoader(path);
             addBut.addActionListener(this);
             debugBut.addActionListener(this);
-            debugSession();
         }
 
 
@@ -85,8 +82,11 @@ public class DebugController extends Thread implements ActionListener {
 
         String line;
         try {
+            reader.readLine();
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
 
+                System.out.println(line);
                 displayView(line);
                 if(line.contains("Input the")){
                     if(view.getDataModel().getCurrentCheckpoint() == 0) {
@@ -110,28 +110,29 @@ public class DebugController extends Thread implements ActionListener {
                 }
                 else if((line.contains("stop reason ="))&&(line.contains("reason = breakpoint"))){
                     if(view.getDataModel().getCurrentCheckpoint() == 0){
-                        int index = view.getDataModel().getBreakPoints().get(0);
-                        view.getDataModel().setCurrentCheckpoint(index);
-                        displayView("\nThe current line under execution is: \n");
-                        for(int i = index ; i<fileHolder.keySet().size() ; i++) {
-                            if(i==index) {
-                                displayView("--> " + i + "   " + fileHolder.get(i));
-                            }
-                            else{
-                                displayView("      " + i + "   " + fileHolder.get(i));
-                            }
-                        }
+//                        System.out.println("The current line number is "+view.getDataModel().getCurrentCheckpoint() );
+//                        int Lineno = view.getDataModel().getBreakPoints().get(0);
+//                        view.getDataModel().setCurrentCheckpoint(Lineno);
+//                        displayView("\nThe current line under execution is: \n");
+//                        for(int i = Lineno ; i<=fileHolder.keySet().size() ; i++) {
+//                            if(i==Lineno) {
+//                                displayView("--> " + i + "   " + fileHolder.get(i));
+//                            }
+//                            else{
+//                                displayView("      " + i + "   " + fileHolder.get(i));
+//                            }
+//                        }
                     }
                     else{
+                        System.out.println("The current line number is "+view.getDataModel().getCurrentCheckpoint() );
                         int index = view.getDataModel().getBreakPoints().
                                 indexOf(view.getDataModel().getCurrentCheckpoint());
-
-                        view.getDataModel().setCurrentCheckpoint(index);
                         if(index < view.getDataModel().getBreakPoints().size()-1){
                             index = index +1;
+                            int Lineno = view.getDataModel().getBreakPoints().get(index);
                             view.getDataModel().setCurrentCheckpoint(index+1);
-                            for(int i = index ; i<fileHolder.keySet().size() ; i++) {
-                                if(i==index) {
+                            for(int i = Lineno ; i<=fileHolder.keySet().size() ; i++) {
+                                if(i==Lineno) {
                                     displayView("--> " + i + "   " + fileHolder.get(i));
                                 }
                                 else{
@@ -143,11 +144,11 @@ public class DebugController extends Thread implements ActionListener {
                 }
                 else if(line.contains("stop reason = instruction step over")){
                     //Click on quit if do not want to evaluate the assembly code
-                    JOptionPane.showMessageDialog(null,
-                            "The previous lldb session has ended. Console is now generating" +
-                                    "assembly level code for debugging. Click on start new session button " +
-                                    "to \" +\n begin a new session with " +
-                                    "the existing checkpoints ");
+//                    JOptionPane.showMessageDialog(null,
+//                            "The previous lldb session has ended. Console is now generating" +
+//                                    "assembly level code for debugging. Click on start new session button " +
+//                                    "to \" +\n begin a new session with " +
+//                                    "the existing checkpoints ");
                     view.getDataModel().setCurrentCheckpoint(0);
                 }
                  else if(line.contains("exited with status = 0")){
@@ -187,17 +188,53 @@ public class DebugController extends Thread implements ActionListener {
                     view.getDataModel().setCurrentCheckpoint(0);
                     break;
                 }
+
+                if(view.getDataModel().getCurrentCheckpoint() == 0){
+                    System.out.println("The current line number is "+view.getDataModel().getCurrentCheckpoint() );
+                    int Lineno = view.getDataModel().getBreakPoints().get(0);
+                    view.getDataModel().setCurrentCheckpoint(Lineno);
+                    displayView("\nThe current line under execution is: \n");
+                    for(int i = Lineno ; i<=fileHolder.keySet().size() ; i++) {
+                        if(i==Lineno) {
+                            displayView("--> " + i + "   " + fileHolder.get(i));
+                        }
+                        else{
+                            displayView("      " + i + "   " + fileHolder.get(i));
+                        }
+                    }
+                }
+                else{
+                    System.out.println("The current line number is "+view.getDataModel().getCurrentCheckpoint() );
+                    int index = view.getDataModel().getCurrentCheckpoint();
+                    if(index < fileHolder.keySet().size()-1){
+                        index = index +1;
+                        view.getDataModel().setCurrentCheckpoint(index);
+                        int Lineno = view.getDataModel().getCurrentCheckpoint();
+                        for(int i = Lineno ; i<=fileHolder.keySet().size() ; i++) {
+                            if(i==Lineno) {
+                                displayView("--> " + i + "   " + fileHolder.get(i));
+                            }
+                            else{
+                                displayView("      " + i + "   " + fileHolder.get(i));
+                            }
+                        }
+                    }
+                }
                 displayView("Action performed!! \n Waiting for next input...");
                 view.refresh();
                 view.display();
+                synchronized (this){
+                    wait(100);
+                }
             }
         }
-        catch (IOException e) {
+        catch (IOException | InterruptedException e) {
             e.printStackTrace();
             displayView("The LLDB session has been closed");
         }
         displayView("The LLDB session has been closed safely");
-        view.setVisible(false);
+        view.getOuterPanel().setVisible(false);
+
     }
 
     public void initializeDebugSession() throws IOException, InterruptedException {
@@ -229,12 +266,6 @@ public class DebugController extends Thread implements ActionListener {
     public void displayView(String str){
         view.getConsole().append("\n").append(str);
         view.setConsole(view.getConsole().toString());
-
-
-    }
-
-    public void debugSession(){
-
     }
 
     @Override
@@ -258,8 +289,8 @@ public class DebugController extends Thread implements ActionListener {
                 int line;
                 try {
                     line = Integer.parseInt(str);
-                    str = model.addCheckpoint(line);
-                    checkpoints = new ArrayList<>(model.getBreakPoints());
+                    str = view.getDataModel().addCheckpoint(line);
+                    checkpoints = new ArrayList<>(view.getDataModel().getBreakPoints());
                     int curcheckP = view.getDataModel().getCurrentCheckpoint();
                     JOptionPane.showMessageDialog(null, str);
                     view = new DebugView(path, process);

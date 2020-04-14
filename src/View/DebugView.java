@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.text.Element;
@@ -25,11 +26,20 @@ public class DebugView extends JFrame implements ActionListener {
     Debugger dataModel;
     JFrame outerPanel;
     JTextArea console;
+
     JPanel innerPanel;
     JLabel checkpoints;
     JLabel curCheckpoints;
     Process process;
     PrintWriter writer;
+    String path;
+    public JFrame getOuterPanel() {
+        return outerPanel;
+    }
+
+    public void setOuterPanel(JFrame outerPanel) {
+        this.outerPanel = outerPanel;
+    }
 
     public Process getProcess() {
         return process;
@@ -140,7 +150,7 @@ public class DebugView extends JFrame implements ActionListener {
         outerPanel.add(innerPanel);
         outerPanel.setSize(1504, 720);
         outerPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.path = path;
         this.readToText(path);
     }
 
@@ -153,7 +163,7 @@ public class DebugView extends JFrame implements ActionListener {
         console.setText(this.dataModel.getConsoleContent().toString());
         checkpoints.setText("The currently marked checkpoints in the program are  "
                 +Arrays.toString(dataModel.getBreakPoints().toArray()));
-        curCheckpoints.setText("Your current checkpoint is at Line number:  "+"      "+ this.getDataModel().getCurrentCheckpoint());
+        curCheckpoints.setText("Your are at the Line number:  "+"      "+ this.getDataModel().getCurrentCheckpoint());
         outerPanel.add(jsp);
         outerPanel.add(jspConsole);
         outerPanel.add(curCheckpoints);
@@ -213,25 +223,79 @@ public class DebugView extends JFrame implements ActionListener {
                 String value = "q\n";
                 writer.write(value, 0, value.length());
                 writer.println();
+                value = "Y\n";
+                writer.write(value, 0, value.length());
+                writer.println();
                 JOptionPane.showMessageDialog(null, "The session has been closed");
+//                outerPanel.setVisible(false);
                 break;
             case "Start new session":
                 value = "run\n";
                 writer.write(value, 0, value.length());
                 writer.println();
+                this.setConsole("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("*****************************************************************************\n");
+                this.getConsole().append("******** BEGINNING OF A NEW SESSION ********\n");
+                this.getDataModel().setCurrentCheckpoint(0);
+                this.refresh();
                 JOptionPane.showMessageDialog(null, "New Session has started");
                 break;
             case "Step up to next line":
                 value = "n\n";
                 writer.write(value, 0, value.length());
                 writer.println();
-                JOptionPane.showMessageDialog(null, "Stepped up to next checkpoint");
+                JOptionPane.showMessageDialog(null, "Stepped up to next line");
                 break;
             case "Add":
+                String str = ((JTextArea)(this.innerPanel.getComponent(1))).getText();
+                str = str.trim();
+                int line;
+                try {
+                    line = Integer.parseInt(str);
+                    String filename = path.substring(path.lastIndexOf("/")+1);
+                    value = "b "+ filename +":"+ line + "\n";
+                    writer.write(value, 0, value.length());
+                    writer.println();
+                    str = this.getDataModel().addCheckpoint(line);
+                    JOptionPane.showMessageDialog(null, str);
+                    this.refresh();
+                    this.display();
+                } catch (Exception eInput) {
+                    eInput.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Please enter an integer value.");
+                }
                 JOptionPane.showMessageDialog(null, "New checkpoint has been added");
                 break;
             case "Del":
-                JOptionPane.showMessageDialog(null, "The selected checkpoint has been deleted");
+                String str1 = ((JTextArea)(this.innerPanel.getComponent(4))).getText();
+                str1 = str1.trim();
+                int line1;
+                try {
+                    line1 = Integer.parseInt(str1);
+                    String filename = path.substring(path.lastIndexOf("/")+1);
+                    line1 = this.getDataModel().delCheckpoint(line1);
+                    if(line1 != 0) {
+                        value = "br del " + line1 + "\n";
+                        writer.write(value, 0, value.length());
+                        writer.println();
+                        JOptionPane.showMessageDialog(null, "Checkpoint has been deleted");
+                        this.getDataModel().getBreakPoints().remove(this.getDataModel().getBreakPoints().get(line1-1));
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "The entered checkpoint does not exist");
+                    }
+                    this.refresh();
+                    this.display();
+                } catch (Exception eInput) {
+                    eInput.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Please enter an integer value.");
+                }
                 break;
 
         }
