@@ -187,6 +187,8 @@ public class ToolBarClass {
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
+                FrequentlyUsedWindow.setActionTiming(button.getText());
+                onOptionSelected(3);
                // FrequentlyUsedWindow.setActionTiming(button.getText());
                 //onOptionSelected(button,3);
 

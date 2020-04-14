@@ -114,6 +114,13 @@ public class FrequentlyUsedWindow {
                     ConsoleOutput.getOutputArea().setText("");
                     TermTester.ToolBarActions(7, file.getName());
                 });
+            }else if(button.getText().equals("Debug")) {
+                button.setOnAction(event -> {
+                    FrequentlyUsedWindow.setActionTiming(button.getText());
+                    file = HomeScene.getFile();
+                    ConsoleOutput.getOutputArea().setText("");
+                    TermTester.ToolBarActions(3, file.getName());
+                });
             }
         }
     }
