@@ -111,7 +111,7 @@ public class MenuBarClass {
         allOptionsMenu.getItems().add(switchMenuItem1);
         allOptionsMenu.getItems().add(switchMenuItem2);
         allOptionsMenu.getItems().add(switchMenuItem3);*/
-
+        setFileMenuActions(fileMenuItem1);
         setFileMenuActions(fileMenuItem2);
         setFileMenuActions(fileMenuItem3);
         setFileMenuActions(fileMenuItem4);
@@ -133,7 +133,7 @@ public class MenuBarClass {
      */
     public void setFileMenuActions(MenuItem fileMenuItem){
         String selectedOption = fileMenuItem.getText();
-        if(selectedOption.equals("Open") || selectedOption.equals("Save") ||selectedOption.equals("Save as")) {
+        if(selectedOption.equals("Open") || selectedOption.equals("Save") ||selectedOption.equals("Save as") || selectedOption.equals("New")) {
             fileMenuItem.setOnAction(event -> {
                 FileChooser fileChooser = new FileChooser();
 
@@ -149,6 +149,9 @@ public class MenuBarClass {
                     originalFile = fileChooser.showOpenDialog(Main.getStage());
                 } else if(selectedOption.equals("Save")) {
                     saveAsTextToFile(homeTextEditor.getText(),HomeScene.getFile());
+                } else  if (selectedOption.equals("New") ) {
+                    homeTextEditor.getTextArea().setText("");
+                    saveAsTextToFile(homeTextEditor.getText(),ToolBarClass.createNewFile());
                 }
                 if (originalFile != null) {
                     if (selectedOption.equals("Save as") ) {
