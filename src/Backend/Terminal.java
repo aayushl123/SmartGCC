@@ -206,13 +206,13 @@ public class Terminal {
         }
 
         else if( option == 4){                                                   // Execute
-            File exeFile = new File("src/Resources/tempOut.exe");
-            if(!exeFile.exists()) {                                             //Compile the file before executing
-                setOption(1);
-                commandGen();
-            }
 
             if(os.startsWith("Win")) {
+                File exeFile = new File("src/Resources/tempOut.exe");
+                if(!exeFile.exists()) {                                             //Compile the file before executing
+                    setOption(1);
+                    commandGen();
+                }
                 command = null;
                 command = "cd src; cd Resources; tempOut.exe";
                 if(os.startsWith("Win")) {
