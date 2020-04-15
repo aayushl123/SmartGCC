@@ -1,6 +1,8 @@
 package Backend;
 
 
+import javax.swing.*;
+import java.io.File;
 import java.util.HashMap;
 
 public class TermTester {
@@ -16,26 +18,23 @@ public class TermTester {
         cmdInfo.put(7, "STACK_USAGE");
         cmdInfo.put(8, "ENABLE_EXCEPTIONS");
 
-        //Terminal t1 = new Terminal(8, "ProgFileSimple.cpp");
-        //Terminal t = new Terminal();
-        //t.setOption(3);
-        //t.setFileName("ProgFile.cpp");
-        //t.commandGen();
-       // Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
-
-        //Terminal t2 = new Terminal(4, "ProgFileSimple.cpp");
+        JFileChooser fileChooser = new JFileChooser();
+        String curPath = System.getProperty("user.dir");
+        System.out.println(curPath);
+        curPath = curPath+"/src/Resources";
+        fileChooser.setCurrentDirectory(new File(curPath));
+        JFrame holder = new JFrame();
+        int result = fileChooser.showOpenDialog(holder);
+        String fileName = "";
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            fileName = selectedFile.getName();
+        }
         Terminal t = new Terminal();
         t.setOption(3);
-        t.setFileName("ProgFileSimple.cpp");
+        t.setFileName(fileName);
         t.commandGen();
-//        Terminal t2 = new Terminal(4, "ProgFile.cpp");
-
-        //Terminal t3 = new Terminal(7, "ProgFileSimple.cpp");
-
-       ;
-
-
-
 
     }
 
