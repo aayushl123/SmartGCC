@@ -5,6 +5,7 @@ import javafx.scene.control.TextInputDialog;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Date;
 import java.util.Optional;
 
 import javafx.scene.control.*;
@@ -235,6 +236,14 @@ public class Terminal {
             File compileFile = new File("src/Resources/"+fileName);
             String absolutePath = compileFile.getAbsolutePath();
             command = null;
+            option = 1;
+            this.commandGen();
+            option = 5;
+            Date start = new Date();
+            fireCommand();
+            Date end = new Date();
+            long diffInMillies = end.getTime() - start.getTime();
+            display("The normal execution time (in millisec) is "+diffInMillies+ " and the memory usage is high" );
             command = "cd src; cd Resources; rm -f tempOut; g++ -O2 " + absolutePath + " -o "+ "tempOut";
             if(os.startsWith("Win")){
                 command = command.replace(";"," &");
@@ -242,7 +251,11 @@ public class Terminal {
             }
             output.setLength(0);
             outputErr.setLength(0);
+            start = new Date();
             fireCommand();
+            end = new Date();
+            diffInMillies = end.getTime() - start.getTime();
+            display("The optimized execution time (in millisec) is "+diffInMillies+ " but the memory usage is low");
         }
 
         else if(option == 6){                                                       //Generate Profile Report
