@@ -253,20 +253,20 @@ public class MenuBarClass {
                 if(userType.equalsIgnoreCase("expert")){
                     if(switchUser.equalsIgnoreCase("typical")){
                         ToolBarClass.removeToolBarExpert();
-                    } else{
+                    } else if(switchUser.equalsIgnoreCase("novice")){
                         ToolBarClass.removeToolBarExpert();
                         ToolBarClass.removeToolBarTypical();
                     }
                 } else if(userType.equalsIgnoreCase("typical")){
                     if(switchUser.equalsIgnoreCase("expert")){
                         ToolBarClass.setToolBarExpert();
-                    } else{
+                    } else if(switchUser.equalsIgnoreCase("novice")){
                         ToolBarClass.removeToolBarTypical();
                     }
                 } else{
                     if(switchUser.equalsIgnoreCase("typical")){
                         ToolBarClass.setToolBarTypical();
-                    } else{
+                    } else if(switchUser.equalsIgnoreCase("expert")){
                         ToolBarClass.setToolBarTypical();
                         ToolBarClass.setToolBarExpert();
                     }

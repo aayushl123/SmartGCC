@@ -141,7 +141,7 @@ public class ToolBarClass {
             button.setOnAction(event -> {
                 onOptionSelected(  1);
 
-               /* FrequentlyUsedWindow.setActionTiming(button.getText());
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
@@ -150,26 +150,26 @@ public class ToolBarClass {
                 ConsoleOutput.getOutputArea().setText("");
                 TermTester.ToolBarActions(1, file.getName());
 
-*/
+
             });
         }else if(button.getText().equals("Execute")){
             button.setOnAction(event -> {
                 FrequentlyUsedWindow.setActionTiming(button.getText());
                 onOptionSelected(4);
-                /*FrequentlyUsedWindow.setActionTiming(button.getText());
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(4, file.getName());*/
+                TermTester.ToolBarActions(4, file.getName());
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
                 FrequentlyUsedWindow.setActionTiming(button.getText());
                 onOptionSelected(2);
-               /* FrequentlyUsedWindow.setActionTiming(button.getText());
+                FrequentlyUsedWindow.setActionTiming(button.getText());
                 System.out.println("here is click");
                 file = HomeScene.getFile();
                 if(file==null) {
@@ -183,7 +183,7 @@ public class ToolBarClass {
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(2, file.getName());*/
+                TermTester.ToolBarActions(2, file.getName());
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
@@ -308,8 +308,7 @@ public class ToolBarClass {
      * Method to remove the typical user's buttons.
      */
     public static void removeToolBarTypical(){
-        toolBar.getItems().remove(codeGenerationButton);
-        toolBar.getItems().remove(codeOptimizationButton);
+        toolBar.getItems().remove(typicalOptions);
     }
 
     /**
