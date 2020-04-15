@@ -142,13 +142,13 @@ public class ToolBarClass {
                 onOptionSelected(  1);
 
                 FrequentlyUsedWindow.setActionTiming(button.getText());
-                file = HomeScene.getFile();
+                /*file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(1, file.getName());
+                TermTester.ToolBarActions(1, file.getName());*/
 
 
             });
@@ -157,21 +157,21 @@ public class ToolBarClass {
                 FrequentlyUsedWindow.setActionTiming(button.getText());
                 onOptionSelected(4);
                 FrequentlyUsedWindow.setActionTiming(button.getText());
-                file = HomeScene.getFile();
+                /*file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(4, file.getName());
+                TermTester.ToolBarActions(4, file.getName());*/
             });
         } else if(button.getText().equals("Linking")){
             button.setOnAction(event -> {
-                FrequentlyUsedWindow.setActionTiming(button.getText());
+                //FrequentlyUsedWindow.setActionTiming(button.getText());
                 onOptionSelected(2);
                 FrequentlyUsedWindow.setActionTiming(button.getText());
                 System.out.println("here is click");
-                file = HomeScene.getFile();
+                /*file = HomeScene.getFile();
                 if(file==null) {
                     file=createNewFile();
                 }
@@ -183,7 +183,7 @@ public class ToolBarClass {
                 MenuBarClass.saveAsTextToFile(homeTextEditor.getText(),file);
                 file = HomeScene.getFile();
                 ConsoleOutput.getOutputArea().setText("");
-                TermTester.ToolBarActions(2, file.getName());
+                TermTester.ToolBarActions(2, file.getName());*/
             });
         } else if(button.getText().equals("Debug")){
             button.setOnAction(event -> {
