@@ -32,10 +32,12 @@ public class TermTester {
             fileName = selectedFile.getName();
         }
         Terminal t = new Terminal();
-        t.setOption(3);
+        t.setOption(2);
         t.setFileName(fileName);
         t.commandGen();
-
+        t.setOption(4);
+        t.setFileName(fileName);
+        t.commandGen();
     }
 
     /**
